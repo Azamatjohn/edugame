@@ -1,0 +1,15 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Django
+*.log
+db.sqlite3
+
+# Environment — never commit this
+backend/.env
+
+# Mac
+.DS_Store

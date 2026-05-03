@@ -10,6 +10,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-this-in-production')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+RAILWAY_HOST = os.getenv('RAILWAY_PUBLIC_DOMAIN', '')
+if RAILWAY_HOST:
+    ALLOWED_HOSTS.append(RAILWAY_HOST)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -98,7 +101,7 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-CORS_ALLOW_ALL_ORIGINS = DEBUG
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5500',
     'http://127.0.0.1:5500',

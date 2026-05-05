@@ -2,7 +2,7 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "gunicorn edugame_backend.wsgi --bind 0.0.0.0:$PORT"
+startCommand = "gunicorn edugame_backend.wsgi --bind 0.0.0.0:$PORT --log-level debug --capture-output --enable-stdio-inheritance"
 healthcheckPath = "/api/health/"
 releaseCommand = "python manage.py migrate --noinput"
 

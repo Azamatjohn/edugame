@@ -23,4 +23,6 @@ urlpatterns = [
 
     # ── Leaderboard ────────────────────────────────────────
     path('leaderboard/',         views.leaderboard,     name='leaderboard'),
+    #-Health-
+    path('health/', views.health_check, name='health-check'),
 ]

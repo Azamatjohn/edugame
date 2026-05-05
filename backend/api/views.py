@@ -18,6 +18,12 @@ from .serializers import (
 )
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def health_check(request):
+    return Response({'status': 'ok'})
+
+
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
 @api_view(['POST'])

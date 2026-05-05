@@ -71,7 +71,7 @@ DATABASES = {
 
 # Railway provides DATABASE_URL — use it if available
 import dj_database_url
-DATABASE_URL = os.getenv('postgresql://postgres:pvOJwmPhMIxlyBtUQnSupUyhSwIfSZuG@postgres.railway.internal:5432/railway')
+DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
     DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
 

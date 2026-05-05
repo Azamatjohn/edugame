@@ -3,7 +3,7 @@
 //  Drop this file next to index.html and include it BEFORE script.js
 // ═══════════════════════════════════════════════════════════════════════════
 
-const API_BASE = 'http://localhost:8000/api';
+const API_BASE = 'https://edugame-production-7551.up.railway.app/api';
 
 // ── Token helpers ──────────────────────────────────────────────────────────
 function getToken() { return localStorage.getItem('edugame_access'); }

@@ -69,6 +69,14 @@ DATABASES = {
     }
 }
 
+# Railway provides DATABASE_URL — use it if available
+import dj_database_url
+DATABASE_URL = os.getenv('postgresql://postgres:pvOJwmPhMIxlyBtUQnSupUyhSwIfSZuG@postgres.railway.internal:5432/railway')
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},

@@ -29,24 +29,26 @@ def health_check(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def student_login(request):
-    """
-    Register-or-login for students.
-    Students identify themselves by name + class — no password required.
-    Returns a JWT token with role='student' embedded.
-    """
-    serializer = StudentLoginSerializer(data=request.data)
-    if not serializer.is_valid():
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    import traceback
+    import logging
+    logger = logging.getLogger(__name__)
+    try:
+        serializer = StudentLoginSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    name = serializer.validated_data['name']
-    student_class = serializer.validated_data['student_class']
+        name = serializer.validated_data['name']
+        student_class = serializer.validated_data['student_class']
 
-    student, _ = Student.objects.get_or_create(
-        name=name,
-        student_class=student_class,
-    )
+        student, _ = Student.objects.get_or_create(
+            name=name,
+            student_class=student_class,
+        )
 
-    return Response(get_student_token(student), status=status.HTTP_200_OK)
+        return Response(get_student_token(student), status=status.HTTP_200_OK)
+    except Exception as e:
+        logger.error(f"student_login error: {e}\n{traceback.format_exc()}")
+        raise
 
 
 @api_view(['POST'])

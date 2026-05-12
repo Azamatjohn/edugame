@@ -1,235 +1,155 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EduGame Pro</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EduGame Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Baloo+2:wght@700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <div id="login-screen" class="overlay">
-    <div class="auth-box">
-      <h2 class="brand-title"><i class="fas fa-rocket"></i> EduGame</h2>
-      <p class="subtle centered">Axborot texnologiyalari fanini zamonaviy metodlar asosida o‘rganish platformasi</p>
 
-      <div class="role-tabs">
-        <button onclick="switchTab('student')" id="t-std" class="tab-btn active">O‘quvchi</button>
-        <button onclick="switchTab('teacher')" id="t-tch" class="tab-btn">O‘qituvchi</button>
+<!-- ═══════════════ AUTH SCREEN ═══════════════ -->
+<div id="auth-screen" class="auth-overlay">
+  <div class="auth-bg">
+    <div class="auth-star s1">⭐</div>
+    <div class="auth-star s2">🌟</div>
+    <div class="auth-star s3">✨</div>
+    <div class="auth-star s4">⭐</div>
+  </div>
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">🎮</div>
+      <h1 class="auth-brand">EduGame Pro</h1>
+      <p class="auth-tagline">Informatika fanini o'rganishning qiziqarli usuli</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchAuthTab('login')">Kirish</button>
+      <button class="auth-tab" onclick="switchAuthTab('register')">Ro'yxatdan o'tish</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-form" class="auth-form">
+      <div class="form-group">
+        <label>Login</label>
+        <div class="input-wrap">
+          <i class="fas fa-user"></i>
+          <input type="text" id="login-username" placeholder="Loginingizni kiriting"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Parol</label>
+        <div class="input-wrap">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="login-password" placeholder="Parolingizni kiriting"/>
+        </div>
+      </div>
+      <button class="auth-btn" onclick="doLogin()">
+        <span>Kirish</span> <i class="fas fa-arrow-right"></i>
+      </button>
+      <p class="auth-switch">Hisobingiz yo'qmi? <a onclick="switchAuthTab('register')">Ro'yxatdan o'ting</a></p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="register-form" class="auth-form" style="display:none;">
+      <div class="role-selector">
+        <button class="role-btn active" data-role="student" onclick="selectRole(this)">
+          <span class="role-icon">🎓</span>
+          <span>O'quvchi</span>
+        </button>
+        <button class="role-btn" data-role="teacher" onclick="selectRole(this)">
+          <span class="role-icon">👨‍🏫</span>
+          <span>O'qituvchi</span>
+        </button>
+        <button class="role-btn" data-role="director" onclick="selectRole(this)">
+          <span class="role-icon">🏫</span>
+          <span>Direktor</span>
+        </button>
       </div>
 
-      <div id="student-form">
-        <input type="text" id="std-name" placeholder="Ism va familiyangiz" />
-        <input type="text" id="std-class-input" placeholder="Sinfingiz (masalan: 4-bosqich / 5-B)" />
-        <button onclick="enterApp('student')" class="main-btn full-btn">Platformaga kirish</button>
+      <div class="form-group">
+        <label>To'liq ism</label>
+        <div class="input-wrap">
+          <i class="fas fa-id-card"></i>
+          <input type="text" id="reg-fullname" placeholder="Ism Familiya"/>
+        </div>
       </div>
-
-      <div id="teacher-form" style="display:none;">
-        <input type="email" id="tch-email" placeholder="Email (admin@mail.uz)" />
-        <input type="password" id="tch-pass" placeholder="Parol (12345)" />
-        <button onclick="enterApp('teacher')" class="main-btn full-btn">O‘qituvchi paneliga kirish</button>
+      <div class="form-group" id="class-group">
+        <label>Sinf/Bosqich</label>
+        <div class="input-wrap">
+          <i class="fas fa-school"></i>
+          <input type="text" id="reg-class" placeholder="Masalan: 6-B yoki 3-bosqich"/>
+        </div>
       </div>
+      <div class="form-group">
+        <label>Login <small>(kamida 3 belgi)</small></label>
+        <div class="input-wrap">
+          <i class="fas fa-at"></i>
+          <input type="text" id="reg-login" placeholder="o'zingizga login yarating"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Parol <small>(kamida 4 belgi)</small></label>
+        <div class="input-wrap">
+          <i class="fas fa-key"></i>
+          <input type="password" id="reg-password" placeholder="Parol yarating"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Parolni tasdiqlang</label>
+        <div class="input-wrap">
+          <i class="fas fa-shield-alt"></i>
+          <input type="password" id="reg-confirm" placeholder="Parolni qayta kiriting"/>
+        </div>
+      </div>
+      <button class="auth-btn" onclick="doRegister()">
+        <span>Ro'yxatdan o'tish</span> <i class="fas fa-rocket"></i>
+      </button>
+      <p class="auth-switch">Hisobingiz bormi? <a onclick="switchAuthTab('login')">Kirish</a></p>
     </div>
   </div>
+</div>
 
-  <div id="app-container" class="app-layout" style="display:none;">
-    <aside class="sidebar">
-      <div>
-        <div class="sidebar-brand">EduGame</div>
-        <p id="sidebar-role" class="sidebar-role">Platforma</p>
-      </div>
-
-      <nav id="student-nav" class="side-nav">
-        <a href="#" onclick="showSection('dashboard'); return false;" id="nav-dashboard" class="nav-item active"><i class="fas fa-th-large"></i> Dashboard</a>
-        <a href="#" onclick="showSection('methods'); return false;" id="nav-methods" class="nav-item"><i class="fas fa-book-open"></i> Metodlar</a>
-        <a href="#" onclick="showSection('results'); return false;" id="nav-results" class="nav-item"><i class="fas fa-award"></i> Natijalarim</a>
-        <a href="#" onclick="showSection('author'); return false;" id="nav-author" class="nav-item"><i class="fas fa-user-graduate"></i> Muallif haqida</a>
-      </nav>
-
-      <nav id="teacher-nav" class="side-nav" style="display:none;">
-        <a href="#" onclick="showSection('teacherDashboard'); return false;" id="nav-teacherDashboard" class="nav-item"><i class="fas fa-chart-pie"></i> Dashboard</a>
-        <a href="#" onclick="showSection('submissions'); return false;" id="nav-submissions" class="nav-item"><i class="fas fa-folder-open"></i> O‘quvchilar ishlari</a>
-        <a href="#" onclick="showSection('teacherMethods'); return false;" id="nav-teacherMethods" class="nav-item"><i class="fas fa-layer-group"></i> Metodlar bo‘yicha</a>
-        <a href="#" onclick="showSection('teacherTaskBuilder'); return false;" id="nav-teacherTaskBuilder" class="nav-item"><i class="fas fa-square-plus"></i> Topshiriq qo‘shish</a>
-        <a href="#" onclick="showSection('author'); return false;" id="nav-author-teacher" class="nav-item"><i class="fas fa-user-graduate"></i> Muallif haqida</a>
-      </nav>
-
-      <button onclick="logoutApp()" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Chiqish</button>
-    </aside>
-
-    <main class="main-content">
-      <header class="top-bar">
+<!-- ═══════════════ MAIN APP ═══════════════ -->
+<div id="app" style="display:none;">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">🎮 EduGame</div>
+      <div class="sidebar-user">
+        <div class="user-avatar" id="sidebar-avatar">🎓</div>
         <div>
-          <h1 id="page-title">Dashboard</h1>
-          <p id="page-subtitle" class="subtle">Bugungi faoliyatingiz shu yerda ko‘rinadi</p>
+          <div class="user-name" id="sidebar-name">-</div>
+          <div class="user-role" id="sidebar-role">-</div>
         </div>
+      </div>
+    </div>
 
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div class="user-pill">
-            <div style="text-align:right;line-height:1.2;">
-              <span id="display-name" class="display-name">Foydalanuvchi</span>
-              <small id="display-class" class="subtle">Sinf: -</small>
-            </div>
-            <div class="user-icon"><i class="fas fa-user-circle"></i></div>
-          </div>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
 
-          <button id="theme-toggle" class="theme-btn" type="button" aria-label="Mavzu almashtirish">
-            <i class="fas fa-moon"></i>
-          </button>
-        </div>
-      </header>
+    <button class="sidebar-logout" onclick="doLogout()">
+      <i class="fas fa-sign-out-alt"></i> Chiqish
+    </button>
+  </aside>
 
-      <section id="dashboard-section" class="content-view">
-        <div class="stats-grid student-stats"></div>
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1 class="page-title" id="page-title">Dashboard</h1>
+        <p class="page-sub" id="page-sub"></p>
+      </div>
+      <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">🌙</button>
+    </div>
 
-        <div class="section-card mt-24">
-          <div class="section-head">
-            <div>
-              <h3>Leaderboard</h3>
-              <p class="subtle">Eng faol o‘quvchilar reytingi</p>
-            </div>
-          </div>
-          <div id="leaderboard-list"></div>
-        </div>
+    <div id="content"></div>
+  </main>
+</div>
 
-        <div class="section-card mt-24">
-          <div class="section-head">
-            <div>
-              <h3>Metodlar</h3>
-              <p class="subtle">6 ta interaktiv metod sizni kutmoqda</p>
-            </div>
-            <button class="main-btn small-btn" onclick="showSection('methods')">Barchasini ko‘rish</button>
-          </div>
-          <div id="dashboard-methods" class="methods-grid"></div>
-        </div>
-      </section>
+<div id="toast" class="toast"></div>
 
-      <section id="methods-section" class="content-view" style="display:none;">
-        <div id="methods-grid" class="methods-grid"></div>
-      </section>
-
-      <section id="methodDetail-section" class="content-view" style="display:none;">
-        <div id="method-detail"></div>
-      </section>
-
-      <section id="results-section" class="content-view" style="display:none;">
-        <div class="section-card">
-          <div class="section-head">
-            <div>
-              <h3>Natijalarim</h3>
-              <p class="subtle">Topshirgan ishlaringiz va o‘qituvchi baholari</p>
-            </div>
-          </div>
-          <div id="student-results"></div>
-        </div>
-      </section>
-
-      <section id="teacherDashboard-section" class="content-view" style="display:none;">
-        <div class="stats-grid teacher-stats"></div>
-        <div class="two-col mt-24">
-          <div class="section-card">
-            <div class="section-head">
-              <div>
-                <h3>Oxirgi topshiriqlar</h3>
-                <p class="subtle">Yangi yuborilgan ishlar ro‘yxati</p>
-              </div>
-            </div>
-            <div id="recent-submissions"></div>
-          </div>
-          <div class="section-card">
-            <div class="section-head">
-              <div>
-                <h3>Metodlar kesimida</h3>
-                <p class="subtle">Qaysi metoddan ko‘proq topshiriq yuborilgan</p>
-              </div>
-            </div>
-            <div id="method-usage"></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="submissions-section" class="content-view" style="display:none;">
-        <div class="section-card">
-          <div class="section-head">
-            <div>
-              <h3>O‘quvchilar ishlari</h3>
-              <p class="subtle">Qaysi o‘quvchi qaysi metodda qanday ish bajarganini shu yerdan ko‘rasiz</p>
-            </div>
-          </div>
-          <div class="filters-row">
-            <input id="submission-search" type="text" placeholder="O‘quvchi yoki metod bo‘yicha qidirish" oninput="renderTeacherSubmissions()" />
-            <select id="submission-status" onchange="renderTeacherSubmissions()">
-              <option value="all">Barcha holatlar</option>
-              <option value="pending">Tekshirilmagan</option>
-              <option value="graded">Baholangan</option>
-            </select>
-          </div>
-          <div id="teacher-submissions"></div>
-        </div>
-      </section>
-
-      <section id="teacherMethods-section" class="content-view" style="display:none;">
-        <div class="section-card">
-          <div class="section-head">
-            <div>
-              <h3>Metodlar bo‘yicha monitoring</h3>
-              <p class="subtle">Har bir metod ichiga kirib aynan shu metoddagi o‘quvchi ishlarini ko‘ring</p>
-            </div>
-          </div>
-          <div id="teacher-methods-grid" class="methods-grid"></div>
-        </div>
-      </section>
-
-      <section id="teacherMethodDetail-section" class="content-view" style="display:none;">
-        <div id="teacher-method-detail"></div>
-      </section>
-      <section id="teacherTaskBuilder-section" class="content-view" style="display:none;">
-  <div id="teacher-task-builder"></div>
-</section>
-
-      <section id="author-section" class="content-view" style="display:none;">
-        <div class="author-wrap">
-          <div class="section-card author-card">
-            <div class="author-avatar"><i class="fas fa-user-graduate"></i></div>
-            <div>
-              <h2>To‘lanboyeva Rayhona Alisher qizi</h2>
-              <p class="subtle">Farg‘ona davlat texnika universiteti · 4-bosqich talabasi</p>
-            </div>
-          </div>
-
-          <div class="two-col mt-24">
-            <div class="section-card">
-              <h3>Platforma haqida</h3>
-              <p class="text-block">
-                Ushbu platforma Axborot texnologiyalari fanini zamonaviy pedagogik metodlar orqali o‘qitish uchun ishlab chiqilgan.
-                Unda o‘quvchilar metodlar asosida topshiriq bajaradi, o‘qituvchi esa ularning ishlarini kuzatib, baholab va izoh qoldiradi.
-              </p>
-            </div>
-            <div class="section-card">
-              <h3>Maqsad</h3>
-              <p class="text-block">
-                Dars jarayonini interaktiv, qiziqarli va natijador qilish, shuningdek, o‘qituvchi va o‘quvchi uchun qulay raqamli muhit yaratish.
-              </p>
-            </div>
-          </div>
-
-          <div class="section-card mt-24">
-            <h3>Asosiy imkoniyatlar</h3>
-            <div class="chip-wrap">
-              <span class="chip">6 ta zamonaviy metod</span>
-              <span class="chip">O‘quvchi topshiriqlari</span>
-              <span class="chip">O‘qituvchi baholashi</span>
-              <span class="chip">Statistika</span>
-              <span class="chip">Natijalar</span>
-              <span class="chip">Zamonaviy dizayn</span>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="api.js"></script>
-  <script src="script.js"></script>
+<script src="api.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

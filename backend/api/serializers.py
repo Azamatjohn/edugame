@@ -1,15 +1,35 @@
 from rest_framework import serializers
-from .models import Student, Submission, CustomTask
+from .models import User, Submission, CustomTask
 
 
-class StudentSerializer(serializers.ModelSerializer):
+class RegisterSerializer(serializers.Serializer):
+    full_name = serializers.CharField(max_length=200)
+    login = serializers.CharField(max_length=100)
+    password = serializers.CharField(min_length=4)
+    role = serializers.ChoiceField(choices=['student', 'teacher', 'director'])
+    student_class = serializers.CharField(max_length=100, required=False, allow_blank=True, default='')
+
+    def validate_login(self, value):
+        if len(value) < 3:
+            raise serializers.ValidationError("Login kamida 3 ta belgi bo'lishi kerak.")
+        if User.objects.filter(login=value).exists():
+            raise serializers.ValidationError("Bu login band. Boshqa login tanlang.")
+        return value
+
+
+class LoginSerializer(serializers.Serializer):
+    login = serializers.CharField()
+    password = serializers.CharField()
+
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
-        fields = ['id', 'name', 'student_class', 'created_at']
+        model = User
+        fields = ['id', 'full_name', 'login', 'role', 'student_class', 'created_at', 'is_active']
 
 
 class SubmissionSerializer(serializers.ModelSerializer):
-    student_name = serializers.CharField(source='student.name', read_only=True)
+    student_name = serializers.CharField(source='student.full_name', read_only=True)
     student_class = serializers.CharField(source='student.student_class', read_only=True)
     submitted_at = serializers.DateTimeField(format='%d.%m.%Y %H:%M', read_only=True)
 
@@ -18,7 +38,7 @@ class SubmissionSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'method_id',
             'student_name', 'student_class',
-            'answers', 'auto_score',
+            'answers', 'auto_score', 'stars',
             'status', 'grade', 'comment',
             'submitted_at',
         ]
@@ -26,14 +46,13 @@ class SubmissionSerializer(serializers.ModelSerializer):
 
 
 class SubmissionCreateSerializer(serializers.Serializer):
-    """Used when a student submits answers."""
     method_id = serializers.CharField(max_length=100)
     answers = serializers.DictField()
     auto_score = serializers.IntegerField(min_value=0)
+    stars = serializers.IntegerField(min_value=0, default=0)
 
 
 class GradeSerializer(serializers.Serializer):
-    """Used when a teacher grades a submission."""
     grade = serializers.CharField(max_length=10)
     comment = serializers.CharField(allow_blank=True, default='')
 
@@ -43,13 +62,3 @@ class CustomTaskSerializer(serializers.ModelSerializer):
         model = CustomTask
         fields = ['id', 'method_id', 'task_data', 'created_at']
         read_only_fields = ['id', 'created_at']
-
-
-class StudentLoginSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=200)
-    student_class = serializers.CharField(max_length=100)
-
-
-class TeacherLoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
-    password = serializers.CharField()

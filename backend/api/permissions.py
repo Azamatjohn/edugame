@@ -2,20 +2,24 @@ from rest_framework.permissions import BasePermission
 
 
 class IsTeacher(BasePermission):
-    """Allow access only to users with role='teacher' in their JWT payload."""
     def has_permission(self, request, view):
-        return bool(
-            request.user and
-            request.user.is_authenticated and
-            getattr(request.user, 'role', None) == 'teacher'
-        )
+        return bool(request.user and request.user.is_authenticated and
+                    getattr(request.user, 'role', None) == 'teacher')
+
+
+class IsDirector(BasePermission):
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_authenticated and
+                    getattr(request.user, 'role', None) == 'director')
+
+
+class IsTeacherOrDirector(BasePermission):
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_authenticated and
+                    getattr(request.user, 'role', None) in ('teacher', 'director'))
 
 
 class IsStudent(BasePermission):
-    """Allow access only to users with role='student' in their JWT payload."""
     def has_permission(self, request, view):
-        return bool(
-            request.user and
-            request.user.is_authenticated and
-            getattr(request.user, 'role', None) == 'student'
-        )
+        return bool(request.user and request.user.is_authenticated and
+                    getattr(request.user, 'role', None) == 'student')

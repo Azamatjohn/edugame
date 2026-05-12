@@ -1,1283 +1,1153 @@
+// ═══════════════════════════════════════════════════
+//  EduGame Pro — Main Script
+// ═══════════════════════════════════════════════════
+
+// ── 4 Methods Data ─────────────────────────────────
 const METHODS = [
   {
     id: 'brainstorming',
-    title: 'Aqliy hujum',
-    icon: 'fa-bolt',
-    color: 'orange',
-    short: 'Tezkor savollar orqali g‘oya va bilimlarni faollashtirish.',
-    level: 'O‘rta',
-    duration: '12 daqiqa',
-    theory: 'Aqliy hujum metodida o‘quvchi qisqa vaqt ichida ko‘proq g‘oya va javoblarni ilgari suradi. Bu metod IT fanida algoritm, qurilma, tarmoq yoki dastur bilan bog‘liq muammolarni tez tahlil qilishga yordam beradi.',
-    goals: [
-      'Tezkor fikrlashni rivojlantirish',
-      'Muhim tushunchalarni esga tushirish',
-      'Axborot texnologiyalariga oid misollarni topish'
-    ],
-    tasks: [
-      {
-        type: 'radio',
-        question: 'Kompyuterning ma’lumotlarni vaqtincha saqlovchi qismi qaysi?',
-        options: ['ROM', 'RAM', 'Monitor', 'Printer'],
-        correct: 'RAM'
-      },
-      {
-        type: 'text',
-        question: '“Axborot xavfsizligi” deganda nimani tushunasiz? 2–3 gap yozing.',
-        placeholder: 'Javobingizni shu yerga yozing...'
-      },
-      {
-        type: 'text',
-        question: '“Parolni himoyalash” mavzusi bo‘yicha 3 ta tezkor g‘oya yozing.',
-        placeholder: '1. ...\n2. ...\n3. ...'
-      }
-    ]
-  },
-  {
-    id: 'cluster',
-    title: 'Klaster',
-    icon: 'fa-project-diagram',
-    color: 'blue',
-    short: 'Asosiy tushuncha atrofida bog‘lanish va mantiqiy zanjir qurish.',
-    level: 'Oson',
-    duration: '15 daqiqa',
-    theory: 'Klaster metodida asosiy atama markazga qo‘yiladi va unga bog‘liq bo‘lgan tushunchalar tarmoqlar ko‘rinishida joylashtiriladi. Bu metod IT fanida apparat, dastur, internet va foydalanish kabi tushunchalarni tizimlashtirish uchun qulay.',
-    goals: [
-      'Mantiqiy bog‘lanishlarni ko‘rish',
-      'Tushunchalarni guruhlarga ajratish',
-      'Mavzuni sxema asosida o‘zlashtirish'
-    ],
-    tasks: [
-      {
-        type: 'cluster-map',
-        question: '“Kompyuter” mavzusi bo‘yicha klaster tuzing.',
-        center: 'Kompyuter',
-        branches: ['Qurilmalar', 'Dasturlar', 'Internet', 'Foydalanish']
-      },
-      {
-        type: 'radio',
-        question: '“Kompyuter qurilmalari” klasterida qaysi biri kiritish qurilmasi?',
-        options: ['Printer', 'Monitor', 'Klaviatura', 'Proyektor'],
-        correct: 'Klaviatura'
-      },
-      {
-        type: 'text',
-        question: 'Tuzgan klasteringiz bo‘yicha qisqa xulosa yozing.',
-        placeholder: 'Klasterdan qanday xulosa chiqardingiz?...'
-      }
-    ]
-  },
-  {
-    id: 'project',
-    title: 'Project-Based Learning',
-    icon: 'fa-diagram-project',
-    color: 'green',
-    short: 'Loyiha asosida o‘rganish va amaliy mahsulot yaratish.',
-    level: 'O‘rta',
-    duration: '18 daqiqa',
-    theory: 'Project-Based Learning metodida o‘quvchi aniq loyiha ustida ishlab, bilimini amaliyotda qo‘llaydi. Axborot texnologiyalari fanida bu metod web sahifa, taqdimot, infografika, jadval yoki oddiy dastur yaratish orqali samarali natija beradi.',
-    goals: [
-      'Mustaqil loyiha ustida ishlash',
-      'Nazariy bilimni amaliyotga qo‘llash',
-      'Yakuniy mahsulot yaratish ko‘nikmasini rivojlantirish'
-    ],
-    tasks: [
-      {
-        type: 'project-box',
-        title: 'Mening birinchi web sahifam',
-        description: 'Oddiy web sahifa yarating.',
-        includes: [
-          'Sahifada sarlavha bo‘lishi',
-          'Ism va familiya yozilishi',
-          'Qiziqishlar yoki sevimli fanlar ko‘rsatilishi',
-          'Oddiy dizayn elementlari qo‘llanishi'
-        ],
-        codeSample: `<!DOCTYPE html>
-<html>
-<head>
-  <title>Mening birinchi sahifam</title>
-</head>
-<body>
-  <h1>Assalomu alaykum</h1>
-  <p>Ismim: ______</p>
-  <p>Qiziqishlarim: ______</p>
-</body>
-</html>`
-      },
-      {
-        type: 'file',
-        question: 'Tayyorlagan loyiha faylingiz nomini yozing.',
-        placeholder: 'Masalan: loyiha.html'
-      },
-      {
-        type: 'text',
-        question: 'Loyihangizda nimalar tayyorlaganingizni qisqacha tushuntiring.',
-        placeholder: 'Loyiha haqida qisqacha yozing...'
-      },
-      {
-        type: 'text',
-        question: 'Ish jarayonida qanday qiyinchiliklarga duch keldingiz?',
-        placeholder: 'Qiyinchiliklaringizni yozing...'
-      }
-    ]
-  },
-  {
-    id: 'case',
-    title: 'Case Study',
-    icon: 'fa-briefcase',
-    color: 'red',
-    short: 'Muammoli vaziyatni tahlil qilish va yechim taklif etish.',
-    level: 'Yuqori',
+    title: 'Aqliy Hujum',
+    emoji: '🧠',
+    color: '#6c63ff',
+    desc: 'Erkin fikrlash va g\'oyalar generatsiyasi. Har bir g\'oya muhim!',
+    level: 'Barcha darajalar',
     duration: '20 daqiqa',
-    theory: 'Case Study metodida o‘quvchi real yoki realga yaqin vaziyatni tahlil qiladi. IT fanida bu metod tarmoq nosozligi, ma’lumot yo‘qolishi, dastur xatosi yoki xavfsizlik muammolarini yechish uchun samarali.',
-    goals: [
-      'Analitik fikrlashni rivojlantirish',
-      'Muammo sababini aniqlash',
-      'Amaliy yechim taklif etish'
+    tasks: [
+      {
+        type: 'text',
+        question: 'Kompyuter texnologiyalarining kundalik hayotdagi 5 ta muhim qo\'llanilishini yozing.',
+        placeholder: 'G\'oyalaringizni shu yerga yozing...',
+      },
+      {
+        type: 'radio',
+        question: 'Aqliy hujum metodining asosiy maqsadi nima?',
+        options: ['Faqat to\'g\'ri javoblarni topish', 'Imkon qadar ko\'p g\'oya ishlab chiqish', 'Munozara qilish', 'Kitob o\'qish'],
+        correct: 'Imkon qadar ko\'p g\'oya ishlab chiqish',
+      },
+      {
+        type: 'text',
+        question: 'Kelajakda ixtiro qilmoqchi bo\'lgan texnologiyangizni tasvirlab bering.',
+        placeholder: 'Ijodiy fikringizni yozing...',
+      },
+      {
+        type: 'radio',
+        question: 'Aqliy hujumda qaysi qoida to\'g\'ri?',
+        options: ['G\'oyalarni darhol tanqid qilish', 'Faqat o\'zingizning g\'oyangizni aytish', 'Barcha g\'oyalarni qabul qilish', 'Jim o\'tirish'],
+        correct: 'Barcha g\'oyalarni qabul qilish',
+      },
     ],
+  },
+  {
+    id: 'case-study',
+    title: 'Muammoli Vaziyat',
+    emoji: '🔍',
+    color: '#06b6d4',
+    desc: 'Real hayotdagi muammolarni tahlil qiling va yechimlar toping.',
+    level: 'O\'rta daraja',
+    duration: '25 daqiqa',
     tasks: [
       {
         type: 'case-box',
-        title: 'Kompyuter virusi muammosi',
-        description: 'Bir o‘quvchi internetdan noma’lum fayl yuklab oldi. Endi kompyuteri sekin ishlay boshladi va reklamalar chiqmoqda.'
+        title: 'Muammo: Maktab internet tarmoqi',
+        description: 'Maktabda 500 o\'quvchi bor, lekin internet tezligi juda sekin. O\'quvchilar onlayn dars paytida muammolarga duch kelmoqda. Siz IT mutaxassis sifatida bu muammoni hal qilishingiz kerak.',
       },
       {
         type: 'text',
-        question: 'Qanday muammo yuz berdi?',
-        placeholder: 'Javobingizni yozing...'
+        question: 'Bu muammoning asosiy sabablarini aniqlang (kamida 3 ta sabab yozing).',
+        placeholder: 'Sabablarni tahlil qiling...',
+      },
+      {
+        type: 'radio',
+        question: 'Maktab tarmog\'ini yaxshilash uchun birinchi qadam nima bo\'lishi kerak?',
+        options: ['Darhol yangi kompyuter sotib olish', 'Mavjud tarmoqni diagnostika qilish', 'Internetni o\'chirib qo\'yish', 'O\'quvchilarni uyga yuborish'],
+        correct: 'Mavjud tarmoqni diagnostika qilish',
       },
       {
         type: 'text',
-        question: 'Virus qanday kirgan bo‘lishi mumkin?',
-        placeholder: 'Javobingizni yozing...'
+        question: 'Muammoni hal qilish uchun o\'z yechimingizni batafsil yozing.',
+        placeholder: 'Yechimingizni batafsil tavsiflang...',
       },
       {
-        type: 'text',
-        question: 'Bu holatda nima qilish kerak?',
-        placeholder: 'Javobingizni yozing...'
+        type: 'radio',
+        question: 'Tarmoq bandligini kamaytirish uchun qaysi usul eng samarali?',
+        options: ['Barcha saytlarni bloklash', 'Trafikni boshqarish (QoS) tizimini o\'rnatish', 'Faqat o\'qituvchilarga internet berish', 'Internet tezligini kamaytirish'],
+        correct: 'Trafikni boshqarish (QoS) tizimini o\'rnatish',
       },
-      {
-        type: 'text',
-        question: 'Kelajakda buni oldini olish uchun qanday choralar ko‘rish kerak?',
-        placeholder: 'Javobingizni yozing...'
-      }
-    ]
+    ],
   },
   {
     id: 'flipped',
-    title: 'Flipped Classroom',
-    icon: 'fa-sync-alt',
-    color: 'purple',
-    short: 'Oldin nazariya bilan tanishib, darsda amaliy ishlash.',
-    level: 'O‘rta',
-    duration: '16 daqiqa',
-    theory: 'Flipped Classroom metodida o‘quvchi avval nazariy material bilan mustaqil tanishadi, dars vaqtida esa amaliy topshiriqlarni bajaradi. IT fanida video, qo‘llanma va mini-ko‘rsatmalar asosida darsni samarali tashkil etish mumkin.',
-    goals: [
-      'Mustaqil tayyorgarlikni oshirish',
-      'Dars vaqtida ko‘proq amaliyot qilish',
-      'Mas’uliyat va faollikni kuchaytirish'
-    ],
+    title: 'Teskari Dars',
+    emoji: '📺',
+    color: '#ec4899',
+    desc: 'Avval video ko\'ring, keyin mashqlarni bajaring — yangi usulda o\'rganing!',
+    level: 'Barcha darajalar',
+    duration: '30 daqiqa',
     tasks: [
       {
         type: 'video',
-        question: 'Video darsni ko‘ring',
-        videoUrl: 'https://www.youtube.com/embed/k2QnNiEr2sM'
-      },
-    
-      {
-        type: 'text',
-        question: 'Uyda ko‘rilgan video darsdan nimalarni o‘rgandingiz?',
-        placeholder: 'Qisqacha xulosa...'
+        question: 'Quyidagi video darsni diqqat bilan tomosha qiling.',
+        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
       },
       {
-        type: 'text',
-        question: 'Dars davomida bajarish mumkin bo‘lgan 2 ta amaliy mashq taklif qiling.',
-        placeholder: '1. ...\n2. ...'
+        type: 'radio',
+        question: 'Kompyuterning markaziy protsessori (CPU) nima vazifani bajaradi?',
+        options: ['Ma\'lumotlarni saqlash', 'Barcha hisob-kitoblarni amalga oshirish', 'Ekranga tasvirni chiqarish', 'Internetga ulanish'],
+        correct: 'Barcha hisob-kitoblarni amalga oshirish',
       },
       {
         type: 'text',
-        question: 'Tushunmagan savolingizni yozing.',
-        placeholder: 'Savolingizni shu yerga yozing...'
-      }
-    ]
+        question: 'Video darsdan o\'rgangan eng muhim 3 ta ma\'lumotni yozing.',
+        placeholder: 'O\'rgangan narsalaringizni yozing...',
+      },
+      {
+        type: 'radio',
+        question: 'RAM (operativ xotira) qanday xususiyatga ega?',
+        options: ['Ma\'lumotlarni doimiy saqlaydi', 'Elektr o\'chganda ma\'lumotlar yo\'qoladi', 'Internetdan tezroq ishlaydi', 'Faqat video saqlaydi'],
+        correct: 'Elektr o\'chganda ma\'lumotlar yo\'qoladi',
+      },
+    ],
   },
   {
     id: 'gamification',
-    title: 'Gamifikatsiya',
-    icon: 'fa-gamepad',
-    color: 'gold',
-    short: 'O‘yin elementlari orqali qiziqish va motivatsiyani oshirish.',
-    level: 'Oson',
-    duration: '14 daqiqa',
-    theory: 'Gamifikatsiya darsga o‘yin elementlarini kiritish orqali o‘quvchini faol qiladi. Ball, bosqich, yulduzcha va topshiriqni bajarish ko‘rsatkichlari ayniqsa IT darslarida kuchli motivatsiya beradi.',
-    goals: [
-      'Motivatsiyani oshirish',
-      'Darsni qiziqarli qilish',
-      'Natijani kuzatishni yengillashtirish'
+    title: 'Bilimlar Labirinti',
+    emoji: '🎮',
+    color: '#f97316',
+    desc: 'Bosqichma-bosqich savollarga javob bering, yulduzlar to\'plang!',
+    level: 'Qiziqarli',
+    duration: '20 daqiqa',
+    isGame: true,
+    stages: [
+      {
+        id: 'stage1', name: '1-eshik', icon: '🚪',
+        question: 'Kompyuterning asosiy xotira qurilmasi qaysi?',
+        options: ['RAM', 'Printer', 'Monitor', 'Sichqoncha'],
+        correct: 'RAM', stars: 1,
+      },
+      {
+        id: 'stage2', name: '2-kalit', icon: '🔑',
+        question: 'Qaysi qurilma ma\'lumotlarni doimiy saqlaydi?',
+        options: ['RAM', 'HDD/SSD', 'CPU', 'GPU'],
+        correct: 'HDD/SSD', stars: 2,
+      },
+      {
+        id: 'stage3', name: 'Bonus', icon: '⭐',
+        question: 'Operatsion tizim nima uchun kerak?',
+        options: ['Faqat o\'yin o\'ynash', 'Dasturiy ta\'minot va uskunani boshqarish', 'Faqat internet uchun', 'Videolarni tomosha qilish'],
+        correct: 'Dasturiy ta\'minot va uskunani boshqarish', stars: 3,
+      },
+      {
+        id: 'stage4', name: 'Final', icon: '🏆',
+        question: 'Qaysi til veb-sahifalar tuzilmasini belgilaydi?',
+        options: ['Python', 'HTML', 'Java', 'C++'],
+        correct: 'HTML', stars: 4,
+      },
     ],
-    tasks: [
-      {
-        type: 'radio',
-        question: 'Gamifikatsiyada qaysi element ko‘p ishlatiladi?',
-        options: ['Bahona', 'Ball va badge', 'Faqat kitob', 'Faqat ma’ruza'],
-        correct: 'Ball va badge'
-      },
-      {
-        type: 'radio',
-        question: 'Level tizimi nimaga xizmat qiladi?',
-        options: ['Bezash uchun', 'Motivatsiyani oshirish uchun', 'Faqat baho qo‘yish uchun', 'Keraksiz'],
-        correct: 'Motivatsiyani oshirish uchun'
-      },
-      {
-        type: 'radio',
-        question: 'Badge nima?',
-        options: ['Jazo', 'Mukofot belgisi', 'Kompyuter turi', 'Kod turi'],
-        correct: 'Mukofot belgisi'
-      },
-      {
-        type: 'text',
-        question: 'IT darsi uchun 3 ta o‘yin elementi yozing.',
-        placeholder: 'Masalan: badge, daraja, vaqtli test...'
-      },
-      {
-        type: 'text',
-        question: 'Gamifikatsiya yordamida qaysi mavzuni qiziqarli o‘rgatish mumkin? Izohlang.',
-        placeholder: 'Mavzu va asos...'
-      }
-    ]
-  }
+  },
 ];
-// ── METHODS data preserved above (unchanged) ──
 
-// ═══════════════════════════════════════════════════════════════════════════
-//  State — no more localStorage for data, API is the source of truth
-// ═══════════════════════════════════════════════════════════════════════════
+// ── App State ───────────────────────────────────────
 let appState = {
-  role: 'student',
-  currentUser: null,        // { name, studentClass } or { name } for teacher
-  currentMethodId: null,
-  currentTeacherMethodId: null,
+  user: null,
+  submissions: [],
+  customTasks: {},
+  currentSection: '',
+  gameState: { stageIndex: 0, stars: 0, streak: 0, answers: {} },
 };
 
-// In-memory caches (populated from API on demand)
-let submissionsDB = [];    // student's own OR all (teacher)
-let customTasksDB = {};    // { methodId: [tasks] }
-
-// ── XP / Level / Badge helpers (unchanged logic) ───────────────────────────
-function calculateXP(item) {
-  const radioCount = getAllTasksForMethod(item.method_id || item.methodId)
-    .filter(t => t.type === 'radio').length;
-  const baseXP = 20;
-  const autoXP = (item.auto_score ?? item.autoScore ?? 0) * 10;
-  const grade = item.grade ? Number(item.grade) : 0;
-  const gradeXP = item.status === 'graded' ? Math.round(grade / 5) : 0;
-  const autoScore = item.auto_score ?? item.autoScore ?? 0;
-  const perfectBonus = radioCount > 0 && autoScore === radioCount ? 10 : 0;
-  return baseXP + autoXP + gradeXP + perfectBonus;
+// ── Utilities ───────────────────────────────────────
+function esc(v) {
+  return String(v ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-function getStudentXP(submissions) {
-  return submissions.reduce((sum, item) => sum + calculateXP(item), 0);
+function toast(msg, type = 'success') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `toast ${type} show`;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('show'), 3500);
 }
 
-function getLevel(xp) {
-  if (xp >= 400) return 5;
-  if (xp >= 300) return 4;
-  if (xp >= 200) return 3;
-  if (xp >= 100) return 2;
-  return 1;
+function setContent(html) { document.getElementById('content').innerHTML = html; }
+
+function setPage(title, sub = '') {
+  document.getElementById('page-title').textContent = title;
+  document.getElementById('page-sub').textContent = sub;
 }
 
-function getBadge(xp) {
-  if (xp >= 400) return '🏆 Master';
-  if (xp >= 300) return '🥇 Top';
-  if (xp >= 200) return '🥈 Faol';
-  if (xp >= 100) return '🥉 Yaxshi';
-  return '⭐ Start';
+// ── Theme ───────────────────────────────────────────
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  const btn = document.getElementById('theme-btn');
+  const isLight = document.body.classList.contains('light');
+  btn.textContent = isLight ? '🌙' : '☀️';
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
 }
 
-// ── Custom tasks helpers (now backed by API cache) ─────────────────────────
-function getCustomTasks(methodId) {
-  return customTasksDB[methodId] || [];
+// ── Auth ────────────────────────────────────────────
+let selectedRole = 'student';
+
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t, i) => {
+    t.classList.toggle('active', (i === 0 && tab === 'login') || (i === 1 && tab === 'register'));
+  });
+  document.getElementById('login-form').style.display = tab === 'login' ? 'flex' : 'none';
+  document.getElementById('register-form').style.display = tab === 'register' ? 'flex' : 'none';
 }
 
-function getAllTasksForMethod(methodId) {
-  const method = METHODS.find(m => m.id === methodId);
-  if (!method) return [];
-  return [...method.tasks, ...getCustomTasks(methodId)];
+function selectRole(btn) {
+  document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedRole = btn.dataset.role;
+  document.getElementById('class-group').style.display = selectedRole === 'student' ? 'flex' : 'none';
 }
 
-// ── Notification helper (replaces alert()) ─────────────────────────────────
-function showToast(msg, type = 'success') {
-  let toast = document.getElementById('edu-toast');
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'edu-toast';
-    toast.style.cssText = `
-      position:fixed; bottom:28px; right:28px; z-index:9999;
-      padding:14px 22px; border-radius:12px; font-size:14px; font-weight:600;
-      box-shadow:0 8px 32px rgba(0,0,0,0.35); transition:opacity .3s;
-      max-width:340px; line-height:1.4;
-    `;
-    document.body.appendChild(toast);
+async function doLogin() {
+  const login = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value.trim();
+  if (!login || !password) { toast('Login va parolni kiriting!', 'error'); return; }
+  try {
+    const data = await API.login(login, password);
+    setTokens(data.access, data.refresh);
+    setUser(data);
+    appState.user = data;
+    initApp();
+  } catch (e) {
+    toast(e.message, 'error');
   }
-  toast.textContent = msg;
-  toast.style.background = type === 'error' ? '#ef4444' : '#10b981';
-  toast.style.color = '#fff';
-  toast.style.opacity = '1';
-  clearTimeout(toast._timer);
-  toast._timer = setTimeout(() => { toast.style.opacity = '0'; }, 3500);
 }
 
-function escapeHtml(value) {
-  return String(value ?? '')
-    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
+async function doRegister() {
+  const full_name = document.getElementById('reg-fullname').value.trim();
+  const student_class = document.getElementById('reg-class').value.trim();
+  const login = document.getElementById('reg-login').value.trim();
+  const password = document.getElementById('reg-password').value.trim();
+  const confirm = document.getElementById('reg-confirm').value.trim();
 
-function nl2brSafe(value) {
-  return escapeHtml(value).replace(/\n/g, '<br>');
-}
-
-// ── Auth ───────────────────────────────────────────────────────────────────
-function switchTab(role) {
-  document.getElementById('student-form').style.display = role === 'student' ? 'block' : 'none';
-  document.getElementById('teacher-form').style.display = role === 'teacher' ? 'block' : 'none';
-  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.getElementById(role === 'student' ? 't-std' : 't-tch').classList.add('active');
-}
-
-async function enterApp(role) {
-  if (role === 'student') {
-    const name = document.getElementById('std-name').value.trim();
-    const studentClass = document.getElementById('std-class-input').value.trim();
-    if (!name || !studentClass) { showToast("Ma'lumotlarni to'liq kiriting!", 'error'); return; }
-
-    try {
-      const data = await API.studentLogin(name, studentClass);
-      setTokens(data.access, data.refresh);
-      appState.role = 'student';
-      appState.currentUser = { name: data.name, studentClass: data.student_class };
-      bootstrapApp('student');
-      await loadStudentData();
-      showSection('dashboard');
-    } catch (e) {
-      showToast(e.message, 'error');
-    }
-    return;
-  }
-
-  const email = document.getElementById('tch-email').value.trim();
-  const pass = document.getElementById('tch-pass').value.trim();
+  if (!full_name || !login || !password || !confirm) { toast('Barcha maydonlarni to\'ldiring!', 'error'); return; }
+  if (login.length < 3) { toast('Login kamida 3 ta belgi bo\'lishi kerak!', 'error'); return; }
+  if (password.length < 4) { toast('Parol kamida 4 ta belgi bo\'lishi kerak!', 'error'); return; }
+  if (password !== confirm) { toast('Parollar mos kelmadi!', 'error'); return; }
+  if (selectedRole === 'student' && !student_class) { toast('Sinfingizni kiriting!', 'error'); return; }
 
   try {
-    const data = await API.teacherLogin(email, pass);
+    const data = await API.register({ full_name, login, password, role: selectedRole, student_class });
     setTokens(data.access, data.refresh);
-    appState.role = 'teacher';
-    appState.currentUser = { name: data.name };
-    bootstrapApp('teacher');
+    setUser(data);
+    appState.user = data;
+    toast('Muvaffaqiyatli ro\'yxatdan o\'tdingiz! 🎉');
+    initApp();
+  } catch (e) {
+    toast(e.message, 'error');
+  }
+}
+
+function doLogout() {
+  clearTokens();
+  appState = { user: null, submissions: [], customTasks: {}, currentSection: '', gameState: { stageIndex: 0, stars: 0, streak: 0, answers: {} } };
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('auth-screen').style.display = 'flex';
+}
+
+// ── App Init ────────────────────────────────────────
+async function initApp() {
+  const user = appState.user;
+  document.getElementById('auth-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+
+  const avatars = { student: '🎓', teacher: '👨‍🏫', director: '🏫' };
+  document.getElementById('sidebar-avatar').textContent = avatars[user.role] || '👤';
+  document.getElementById('sidebar-name').textContent = user.full_name;
+  document.getElementById('sidebar-role').textContent = user.role === 'student' ? 'O\'quvchi' : user.role === 'teacher' ? 'O\'qituvchi' : 'Direktor';
+
+  buildNav(user.role);
+
+  if (user.role === 'student') {
+    await loadStudentData();
+    showSection('dashboard');
+  } else if (user.role === 'teacher') {
     await loadTeacherData();
     showSection('teacherDashboard');
-  } catch (e) {
-    showToast(e.message, 'error');
-  }
-}
-
-function bootstrapApp(role) {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('app-container').style.display = 'flex';
-  document.getElementById('display-name').innerText = appState.currentUser.name;
-  document.getElementById('sidebar-role').innerText =
-    role === 'teacher' ? "O'qituvchi paneli" : "O'quvchi paneli";
-  document.getElementById('student-nav').style.display = role === 'student' ? 'grid' : 'none';
-  document.getElementById('teacher-nav').style.display = role === 'teacher' ? 'grid' : 'none';
-  if (role === 'student') {
-    document.getElementById('display-class').innerText = 'Sinf: ' + appState.currentUser.studentClass;
   } else {
-    document.getElementById('display-class').innerText = 'Panel: Admin';
+    showSection('directorDashboard');
   }
 }
 
+function buildNav(role) {
+  const navs = {
+    student: [
+      { id: 'dashboard', icon: '🏠', label: 'Bosh sahifa' },
+      { id: 'methods', icon: '📚', label: 'Metodlar' },
+      { id: 'myResults', icon: '🏆', label: 'Natijalarim' },
+      { id: 'leaderboard', icon: '👑', label: 'Reyting' },
+    ],
+    teacher: [
+      { id: 'teacherDashboard', icon: '📊', label: 'Dashboard' },
+      { id: 'teacherSubmissions', icon: '📋', label: 'Topshiriqlar' },
+      { id: 'teacherMethods', icon: '🔧', label: 'Metodlar' },
+    ],
+    director: [
+      { id: 'directorDashboard', icon: '📊', label: 'Dashboard' },
+      { id: 'directorStudents', icon: '🎓', label: 'O\'quvchilar' },
+      { id: 'directorTeachers', icon: '👨‍🏫', label: 'O\'qituvchilar' },
+    ],
+  };
+
+  const nav = document.getElementById('sidebar-nav');
+  nav.innerHTML = (navs[role] || []).map(item => `
+    <button class="nav-item" id="nav-${item.id}" onclick="showSection('${item.id}')">
+      <span class="nav-icon">${item.icon}</span>
+      <span>${item.label}</span>
+    </button>
+  `).join('');
+}
+
+function showSection(section) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navEl = document.getElementById(`nav-${section}`);
+  if (navEl) navEl.classList.add('active');
+  appState.currentSection = section;
+  renderSection(section);
+}
+
+async function renderSection(section) {
+  const renders = {
+    dashboard: renderStudentDashboard,
+    methods: renderMethods,
+    myResults: renderMyResults,
+    leaderboard: renderLeaderboard,
+    teacherDashboard: renderTeacherDashboard,
+    teacherSubmissions: renderTeacherSubmissions,
+    teacherMethods: renderTeacherMethodsPanel,
+    directorDashboard: renderDirectorDashboard,
+    directorStudents: () => renderDirectorUsers('student'),
+    directorTeachers: () => renderDirectorUsers('teacher'),
+  };
+  if (renders[section]) await renders[section]();
+}
+
+// ── Load Data ───────────────────────────────────────
 async function loadStudentData() {
   try {
-    // Load custom tasks for all methods
-    const tasks = await API.getCustomTasks();
-    customTasksDB = {};
+    const [subs, tasks] = await Promise.all([API.getMySubmissions(), API.getCustomTasks()]);
+    appState.submissions = subs;
+    appState.customTasks = {};
     tasks.forEach(t => {
-      if (!customTasksDB[t.method_id]) customTasksDB[t.method_id] = [];
-      customTasksDB[t.method_id].push(t.task_data);
+      if (!appState.customTasks[t.method_id]) appState.customTasks[t.method_id] = [];
+      appState.customTasks[t.method_id].push(t.task_data);
     });
-
-    // Load student's own submissions
-    submissionsDB = await API.getMySubmissions();
-
-    renderStudentDashboard();
-    renderMethods();
-    renderStudentResults();
-    await renderLeaderboard();
-  } catch (e) {
-    showToast('Ma\'lumotlarni yuklashda xato: ' + e.message, 'error');
-  }
+  } catch (e) { toast('Ma\'lumot yuklashda xato', 'error'); }
 }
 
 async function loadTeacherData() {
   try {
-    const tasks = await API.getCustomTasks();
-    customTasksDB = {};
+    const [subs, tasks] = await Promise.all([API.getAllSubmissions(), API.getCustomTasks()]);
+    appState.submissions = subs;
+    appState.customTasks = {};
     tasks.forEach(t => {
-      if (!customTasksDB[t.method_id]) customTasksDB[t.method_id] = [];
-      // Store full record (with id) for deletion
-      if (!customTasksDB[`${t.method_id}_records`]) customTasksDB[`${t.method_id}_records`] = [];
-      customTasksDB[t.method_id].push(t.task_data);
-      customTasksDB[`${t.method_id}_records`].push(t);
+      if (!appState.customTasks[t.method_id]) appState.customTasks[t.method_id] = [];
+      appState.customTasks[t.method_id].push({ ...t.task_data, _id: t.id });
     });
-
-    submissionsDB = await API.getAllSubmissions();
-    renderTeacherDashboard();
-    renderTeacherSubmissions();
-    renderTeacherMethods();
-  } catch (e) {
-    showToast('Ma\'lumotlarni yuklashda xato: ' + e.message, 'error');
-  }
+  } catch (e) { toast('Ma\'lumot yuklashda xato', 'error'); }
 }
 
-function logoutApp() {
-  clearTokens();
-  location.reload();
+function getAllTasks(methodId) {
+  const method = METHODS.find(m => m.id === methodId);
+  if (!method) return [];
+  return [...(method.tasks || []), ...(appState.customTasks[methodId] || [])];
 }
 
-// ── Page routing ───────────────────────────────────────────────────────────
-function getPageMeta(section) {
-  const map = {
-    dashboard: ['Dashboard', 'Bugungi faoliyatingiz shu yerda ko\'rinadi'],
-    methods: ['Metodlar', 'Barcha metodlar va ularning topshiriqlari'],
-    methodDetail: ['Metod sahifasi', 'Topshiriqni bajaring va yuboring'],
-    results: ['Natijalarim', 'Baholar va izohlar shu yerda chiqadi'],
-    teacherTaskBuilder: ['Topshiriq qo\'shish', 'Har bir metod uchun alohida topshiriq qo\'shing'],
-    teacherDashboard: ['O\'qituvchi dashboardi', 'Umumiy monitoring va statistika'],
-    submissions: ['O\'quvchilar ishlari', 'Bajarilgan topshiriqlarni tekshiring'],
-    teacherMethods: ['Metodlar bo\'yicha', 'Har bir metoddagi ishlarni alohida ko\'ring'],
-    teacherMethodDetail: ['Metod monitoringi', 'Tanlangan metod bo\'yicha barcha javoblar'],
-    author: ['Muallif haqida', 'Platforma muallifi va loyiha maqsadi'],
-  };
-  return map[section] || ['EduGame', ''];
-}
+function getMethodTitle(id) { return METHODS.find(m => m.id === id)?.title || id; }
+function getMethodEmoji(id) { return METHODS.find(m => m.id === id)?.emoji || '📚'; }
 
-function showSection(section) {
-  document.querySelectorAll('.content-view').forEach(v => (v.style.display = 'none'));
-  const target = document.getElementById(`${section}-section`);
-  if (target) target.style.display = 'block';
-  const [title, subtitle] = getPageMeta(section);
-  document.getElementById('page-title').innerText = title;
-  document.getElementById('page-subtitle').innerText = subtitle;
-  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-  const navEl = document.getElementById(`nav-${section}`);
-  if (navEl) navEl.classList.add('active');
-
-  if (section === 'dashboard') renderStudentDashboard();
-  if (section === 'results') renderStudentResults();
-  if (section === 'teacherDashboard') renderTeacherDashboard();
-  if (section === 'submissions') renderTeacherSubmissions();
-  if (section === 'teacherMethods') renderTeacherMethods();
-}
-
-// ── Method cards ───────────────────────────────────────────────────────────
-function renderMethodCard(method, teacherVersion = false) {
-  if (teacherVersion) {
-    return `
-      <div class="m-card">
-        <div class="m-icon ${method.color}"><i class="fas ${method.icon}"></i></div>
-        <h3>${escapeHtml(method.title)}</h3>
-        <p class="subtle">${escapeHtml(method.short)}</p>
-        <div class="card-meta">
-          <span class="mini-tag"><i class="fas fa-layer-group"></i> ${escapeHtml(method.level)}</span>
-          <span class="mini-tag"><i class="fas fa-clock"></i> ${escapeHtml(method.duration)}</span>
-        </div>
-        <div style="display:grid;gap:10px;">
-          <button class="card-btn" onclick="openTeacherMethod('${method.id}')">Monitoring</button>
-          <button class="main-btn small-btn" onclick="openTeacherTaskBuilder('${method.id}')">Topshiriq qo'shish</button>
-        </div>
-      </div>`;
-  }
-  return `
-    <div class="m-card">
-      <div class="m-icon ${method.color}"><i class="fas ${method.icon}"></i></div>
-      <h3>${escapeHtml(method.title)}</h3>
-      <p class="subtle">${escapeHtml(method.short)}</p>
-      <div class="card-meta">
-        <span class="mini-tag"><i class="fas fa-layer-group"></i> ${escapeHtml(method.level)}</span>
-        <span class="mini-tag"><i class="fas fa-clock"></i> ${escapeHtml(method.duration)}</span>
-      </div>
-      <button class="card-btn" onclick="openMethod('${method.id}')">Boshlash</button>
-    </div>`;
-}
-
-function renderMethods() {
-  const cards = METHODS.map(m => renderMethodCard(m)).join('');
-  const grid = document.getElementById('methods-grid');
-  const dash = document.getElementById('dashboard-methods');
-  if (grid) grid.innerHTML = cards;
-  if (dash) dash.innerHTML = cards;
-}
-
-// ── Student dashboard ──────────────────────────────────────────────────────
+// ── Student Dashboard ───────────────────────────────
 function renderStudentDashboard() {
-  const xp = getStudentXP(submissionsDB);
-  const level = getLevel(xp);
-  const graded = submissionsDB.filter(s => s.status === 'graded');
-  const completedMethods = new Set(submissionsDB.map(s => s.method_id));
+  setPage('Bosh sahifa', 'Bugungi faoliyatingiz');
+  const subs = appState.submissions;
+  const totalStars = subs.reduce((s, x) => s + (x.stars || 0), 0);
+  const xp = subs.reduce((s, x) => s + 20 + (x.auto_score || 0) * 10 + (x.stars || 0), 0);
+  const graded = subs.filter(s => s.status === 'graded').length;
+  const done = new Set(subs.map(s => s.method_id)).size;
 
-  const statsHTML = [
-    { label: 'XP ball', value: xp, help: `Level ${level}` },
-    { label: 'Topshirilgan ishlar', value: submissionsDB.length, help: 'Barcha ishlar' },
-    { label: 'Baholangan ishlar', value: graded.length, help: 'Tekshirilgan' },
-    { label: 'Qolgan metodlar', value: METHODS.length - completedMethods.size, help: 'Hali bajarilmagan' },
-  ].map(stat => `
-    <div class="stat-card">
-      <div class="label">${escapeHtml(stat.label)}</div>
-      <div class="value">${escapeHtml(String(stat.value))}</div>
-      <div class="help">${escapeHtml(stat.help)}</div>
-    </div>`).join('');
+  setContent(`
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value">${xp}</div><div class="stat-label">⚡ XP Ball</div></div>
+      <div class="stat-card"><div class="stat-value">⭐ ${totalStars}</div><div class="stat-label">Yulduzlar</div></div>
+      <div class="stat-card"><div class="stat-value">${subs.length}</div><div class="stat-label">📤 Topshirilgan</div></div>
+      <div class="stat-card"><div class="stat-value">${METHODS.length - done}</div><div class="stat-label">📚 Qolgan metodlar</div></div>
+    </div>
 
-  const wrap = document.querySelector('.student-stats');
-  if (wrap) wrap.innerHTML = statsHTML;
+    <div class="section-card">
+      <div class="section-head">
+        <div><h3>📚 Metodlar</h3><p>Qaysi metoddan boshlaysiz?</p></div>
+        <button class="btn btn-primary btn-sm" onclick="showSection('methods')">Barchasi</button>
+      </div>
+      <div class="methods-grid">
+        ${METHODS.map(m => renderMethodCard(m)).join('')}
+      </div>
+    </div>
+  `);
 }
 
-async function renderLeaderboard() {
-  const wrap = document.getElementById('leaderboard-list');
-  if (!wrap) return;
-  try {
-    const board = await API.getLeaderboard();
-    if (!board.length) {
-      wrap.innerHTML = `<div class="empty-state">Hali ma'lumot yo'q</div>`;
-      return;
-    }
-    wrap.innerHTML = `
-      <div class="leaderboard-wrap">
-        ${board.slice(0, 10).map((u, i) => `
-          <div class="leaderboard-item ${i === 0 ? 'top-1' : ''}">
-            <div class="leaderboard-left">
-              <div class="leader-rank">#${i + 1}</div>
-              <div>
-                <div class="leader-name">${escapeHtml(u.name)}</div>
-                <div class="leader-meta">${escapeHtml(u.student_class)} · Level ${getLevel(u.xp)} · ${getBadge(u.xp)}</div>
-              </div>
-            </div>
-            <div class="leader-right">
-              <div class="leader-xp">${u.xp} XP</div>
-              <div class="leader-work">${u.works} ta ish</div>
-            </div>
-          </div>`).join('')}
-      </div>`;
-  } catch (e) {
-    wrap.innerHTML = `<div class="empty-state">Leaderboard yuklanmadi</div>`;
-  }
+// ── Methods ─────────────────────────────────────────
+function renderMethods() {
+  setPage('Metodlar', '4 ta interaktiv metod sizni kutmoqda');
+  setContent(`<div class="methods-grid">${METHODS.map(m => renderMethodCard(m)).join('')}</div>`);
 }
 
-// ── Method detail (student) ────────────────────────────────────────────────
+function renderMethodCard(m) {
+  const sub = appState.submissions.find(s => s.method_id === m.id);
+  const done = !!sub;
+  const stars = sub?.stars || 0;
+  return `
+    <div class="method-card" style="--method-color:${m.color}" onclick="openMethod('${m.id}')">
+      <div class="method-emoji">${m.emoji}</div>
+      <div class="method-title">${esc(m.title)}</div>
+      <div class="method-desc">${esc(m.desc)}</div>
+      <div class="method-meta">
+        <span class="method-tag">⏱ ${esc(m.duration)}</span>
+        <span class="method-tag">📊 ${esc(m.level)}</span>
+        ${done ? `<span class="method-tag" style="color:${m.color}">✅ Bajarildi ${stars > 0 ? '⭐'.repeat(Math.min(stars,5)) : ''}</span>` : ''}
+      </div>
+      <button class="method-btn" style="background:${m.color}">
+        ${done ? '🔄 Qayta bajarish' : '▶ Boshlash'}
+      </button>
+    </div>
+  `;
+}
+
+// ── Open Method ─────────────────────────────────────
 function openMethod(methodId) {
-  appState.currentMethodId = methodId;
   const method = METHODS.find(m => m.id === methodId);
   if (!method) return;
+  if (method.isGame) {
+    openGameMethod(method);
+  } else {
+    openRegularMethod(method);
+  }
+}
 
-  const existing = submissionsDB.find(s => (s.method_id || s.methodId) === methodId);
-  const detail = document.getElementById('method-detail');
-  if (!detail) return;
+// ── Regular Method ──────────────────────────────────
+function openRegularMethod(method) {
+  setPage(method.title, method.desc);
+  const existing = appState.submissions.find(s => s.method_id === method.id);
+  const tasks = getAllTasks(method.id);
 
-  detail.innerHTML = `
-    <div class="method-hero">
-      <div class="method-panel">
-        <div class="m-icon ${method.color}"><i class="fas ${method.icon}"></i></div>
-        <h2>${escapeHtml(method.title)}</h2>
-        <p class="text-block" style="margin-top:14px;">${escapeHtml(method.theory)}</p>
-        <ul class="bullet-list">
-          ${method.goals.map(g => `<li>${escapeHtml(g)}</li>`).join('')}
-        </ul>
-        <div class="note-box" style="margin-top:18px;">
-          <strong>Eslatma:</strong> topshiriqni bajarganingizdan so'ng yuboring. Javobingiz o'qituvchi paneliga tushadi va baholanadi.
+  const tasksHTML = tasks.map((task, i) => renderTaskInput(task, i, method.id, existing)).join('');
+
+  setContent(`
+    <button class="btn btn-outline btn-sm" style="margin-bottom:16px" onclick="showSection('methods')">← Orqaga</button>
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start">
+      <div>
+        <div class="section-card" style="margin-bottom:16px">
+          <h3 style="margin-bottom:8px">${method.emoji} ${esc(method.title)}</h3>
+          <p style="color:var(--text2);font-size:0.9rem">${esc(method.desc)}</p>
         </div>
-        ${existing ? `
-          <div class="note-box" style="margin-top:12px;">
-            <strong>Avval yuborilgan:</strong> Siz bu metod bo'yicha avval ham topshiriq yuborgansiz. Yangi javob yuborsangiz, eski javob yangilanadi.
-          </div>` : ''}
-      </div>
-      <div class="method-panel">
-        <h3>Topshiriqlar</h3>
-        <div class="task-list">${renderTasks(method, existing)}</div>
-        <button class="main-btn full-btn" style="margin-top:18px;" onclick="submitMethodWork('${method.id}')">
-          Topshiriqni yuborish
+        ${tasksHTML}
+        <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="submitRegularMethod('${method.id}')">
+          📤 Topshiriqni yuborish
         </button>
+      </div>
+      <div class="section-card" style="position:sticky;top:80px">
+        <h4 style="margin-bottom:12px">📋 Metod haqida</h4>
+        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:8px">⏱ ${esc(method.duration)}</p>
+        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:8px">📊 ${esc(method.level)}</p>
+        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px">📝 ${tasks.length} ta topshiriq</p>
+        ${existing ? `<div style="padding:10px;background:rgba(34,197,94,0.1);border-radius:10px;font-size:0.85rem;color:var(--green)">✅ Avval topshirilgan</div>` : ''}
+      </div>
+    </div>
+  `);
+}
+
+function renderTaskInput(task, index, methodId, existing) {
+  const key = `task${index + 1}`;
+  const ans = existing?.answers?.[key] || '';
+
+  if (task.type === 'video') return `
+    <div class="section-card" style="margin-bottom:14px">
+      <p class="answer-label">${index + 1}-topshiriq</p>
+      <p style="font-weight:700;margin-bottom:12px">${esc(task.question)}</p>
+      <div style="border-radius:12px;overflow:hidden;aspect-ratio:16/9">
+        <iframe width="100%" height="100%" src="${task.videoUrl}" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>`;
 
-  showSection('methodDetail');
+  if (task.type === 'case-box') return `
+    <div class="section-card" style="margin-bottom:14px;border-left:4px solid var(--cyan)">
+      <p class="answer-label">📌 Muammoli vaziyat</p>
+      <p style="font-weight:800;font-size:1rem;margin-bottom:8px">${esc(task.title)}</p>
+      <p style="color:var(--text2);line-height:1.6;font-size:0.9rem">${esc(task.description)}</p>
+    </div>`;
+
+  if (task.type === 'radio') return `
+    <div class="section-card" style="margin-bottom:14px">
+      <p class="answer-label">${index + 1}-topshiriq • Test</p>
+      <p style="font-weight:700;margin-bottom:14px">${esc(task.question)}</p>
+      <div class="game-options" style="grid-template-columns:1fr 1fr">
+        ${task.options.map(opt => `
+          <label class="game-option" style="cursor:pointer;display:flex;align-items:center;gap:10px">
+            <input type="radio" name="${methodId}-${key}" value="${esc(opt)}" ${ans === opt ? 'checked' : ''} style="accent-color:var(--primary)"/>
+            ${esc(opt)}
+          </label>
+        `).join('')}
+      </div>
+    </div>`;
+
+  return `
+    <div class="section-card" style="margin-bottom:14px">
+      <p class="answer-label">${index + 1}-topshiriq</p>
+      <p style="font-weight:700;margin-bottom:12px">${esc(task.question)}</p>
+      <textarea id="${methodId}-${key}" placeholder="${esc(task.placeholder || 'Javobingizni yozing...')}"
+        style="width:100%;min-height:100px;padding:12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:Nunito,sans-serif;font-size:0.9rem;resize:vertical;outline:none"
+        onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
+      >${esc(typeof ans === 'string' ? ans : '')}</textarea>
+    </div>`;
 }
 
-// renderTasks — identical to original (no data layer changes needed)
-function renderTasks(method, existing) {
-  return getAllTasksForMethod(method.id).map((task, index) => {
-    const key = `task${index + 1}`;
-    const ans = existing?.answers?.[key] || '';
-
-    if (task.type === 'video') {
-      return `
-        <div class="task-card">
-          <h4>${index + 1}. ${escapeHtml(task.question)}</h4>
-          <div class="video-box">
-            <iframe width="100%" height="260" src="${task.videoUrl}"
-              title="Video dars" frameborder="0" allowfullscreen></iframe>
-          </div>
-        </div>`;
-    }
-    if (task.type === 'case-box') {
-      return `
-        <div class="task-card">
-          <h4>${escapeHtml(task.title)}</h4>
-          <div class="note-box">${escapeHtml(task.description)}</div>
-        </div>`;
-    }
-    if (task.type === 'project-box') {
-      const savedCode = existing?.answers?.[`${key}_code`] || task.codeSample || '';
-      return `
-        <div class="task-card">
-          <h4>${escapeHtml(task.title)}</h4>
-          <div class="note-box">
-            <strong>Vazifa:</strong> ${escapeHtml(task.description)}<br><br>
-            <strong>Ichida:</strong>
-            <ul class="bullet-list" style="margin-top:8px;">
-              ${task.includes.map(i => `<li>${escapeHtml(i)}</li>`).join('')}
-            </ul>
-          </div>
-          <div class="answer-box" style="margin-top:12px;">
-            <div class="answer-title">Misol kod</div>
-            <textarea id="${method.id}-${key}-code" class="code-editor"
-              placeholder="Kodingizni shu yerga yozing...">${escapeHtml(savedCode)}</textarea>
-          </div>
-        </div>`;
-    }
-    if (task.type === 'cluster-map') {
-      const saved = typeof ans === 'object' && ans !== null ? ans : {};
-      return `
-        <div class="task-card">
-          <h4>${index + 1}. ${escapeHtml(task.question)}</h4>
-          <div class="note-box" style="margin-bottom:12px;">
-            <strong>Markaziy tushuncha:</strong> ${escapeHtml(task.center || 'Mavzu')}
-          </div>
-          <div class="cluster-wrap">
-            ${task.branches.map((branch, bIndex) => `
-              <div class="cluster-item">
-                <label><strong>${escapeHtml(branch)}</strong></label>
-                <textarea id="${method.id}-${key}-branch-${bIndex}"
-                  placeholder="${escapeHtml(branch)} bo'yicha tushunchalarni yozing...">${escapeHtml(saved[`branch${bIndex}`] || '')}</textarea>
-              </div>`).join('')}
-          </div>
-        </div>`;
-    }
-    if (task.type === 'radio') {
-      return `
-        <div class="task-card">
-          <h4>${index + 1}. ${escapeHtml(task.question)}</h4>
-          <div class="option-grid">
-            ${task.options.map(opt => `
-              <label class="option-item">
-                <input type="radio" name="${method.id}-${key}" value="${escapeHtml(opt)}" ${ans === opt ? 'checked' : ''} />
-                <span>${escapeHtml(opt)}</span>
-              </label>`).join('')}
-          </div>
-        </div>`;
-    }
-    if (task.type === 'file') {
-      return `
-        <div class="task-card">
-          <h4>${index + 1}. ${escapeHtml(task.question)}</h4>
-          <input type="text" id="${method.id}-${key}" class="grade-input" style="width:100%;"
-            placeholder="${escapeHtml(task.placeholder || 'Fayl nomini kiriting...')}"
-            value="${escapeHtml(typeof ans === 'string' ? ans : '')}" />
-        </div>`;
-    }
-    return `
-      <div class="task-card">
-        <h4>${index + 1}. ${escapeHtml(task.question)}</h4>
-        <textarea id="${method.id}-${key}"
-          placeholder="${escapeHtml(task.placeholder || 'Javob yozing...')}">${escapeHtml(typeof ans === 'string' ? ans : '')}</textarea>
-      </div>`;
-  }).join('');
-}
-
-async function submitMethodWork(methodId) {
+async function submitRegularMethod(methodId) {
   const method = METHODS.find(m => m.id === methodId);
-  if (!method || !appState.currentUser) return;
-
-  const tasks = getAllTasksForMethod(methodId);
+  if (!method) return;
+  const tasks = getAllTasks(methodId);
   const answers = {};
   let autoScore = 0;
 
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     const key = `task${i + 1}`;
-
-    if (task.type === 'radio') {
-      const selected = document.querySelector(`input[name="${method.id}-${key}"]:checked`);
-      if (!selected) { showToast("Iltimos, barcha topshiriqlarni to'ldiring!", 'error'); return; }
-      answers[key] = selected.value;
-      if (selected.value === task.correct) autoScore++;
-      continue;
-    }
-    if (task.type === 'cluster-map') {
-      const clusterAnswers = {};
-      let filled = 0;
-      for (let b = 0; b < task.branches.length; b++) {
-        const f = document.getElementById(`${method.id}-${key}-branch-${b}`);
-        const v = f ? f.value.trim() : '';
-        clusterAnswers[`branch${b}`] = v;
-        if (v) filled++;
-      }
-      if (!filled) { showToast("Iltimos, barcha topshiriqlarni to'ldiring!", 'error'); return; }
-      answers[key] = clusterAnswers;
-      continue;
-    }
-    if (task.type === 'video') { answers[key] = "Video ko'rildi"; continue; }
+    if (task.type === 'video') { answers[key] = 'Ko\'rildi'; continue; }
     if (task.type === 'case-box') { answers[key] = task.title; continue; }
-    if (task.type === 'project-box') {
-      const f = document.getElementById(`${method.id}-${key}-code`);
-      const v = f ? f.value.trim() : '';
-      if (!v) { showToast('Iltimos, loyiha kodini kiriting!', 'error'); return; }
-      answers[key] = task.title;
-      answers[`${key}_code`] = v;
+    if (task.type === 'radio') {
+      const sel = document.querySelector(`input[name="${methodId}-${key}"]:checked`);
+      if (!sel) { toast('Barcha test savollarini javoblang!', 'error'); return; }
+      answers[key] = sel.value;
+      if (sel.value === task.correct) autoScore++;
       continue;
     }
-    const field = document.getElementById(`${method.id}-${key}`);
-    const val = field ? field.value.trim() : '';
-    if (!val) { showToast("Iltimos, barcha topshiriqlarni to'ldiring!", 'error'); return; }
+    const el = document.getElementById(`${methodId}-${key}`);
+    const val = el?.value?.trim();
+    if (!val) { toast('Barcha maydonlarni to\'ldiring!', 'error'); return; }
     answers[key] = val;
   }
 
   try {
-    const result = await API.submitWork(methodId, answers, autoScore);
-    // Update local cache
-    const idx = submissionsDB.findIndex(s => (s.method_id || s.methodId) === methodId);
-    if (idx > -1) submissionsDB[idx] = result;
-    else submissionsDB.unshift(result);
-
-    renderStudentDashboard();
-    renderStudentResults();
-    showToast('Topshiriq muvaffaqiyatli yuborildi!');
-    showSection('results');
+    const result = await API.submitWork(methodId, answers, autoScore, 0);
+    const idx = appState.submissions.findIndex(s => s.method_id === methodId);
+    if (idx > -1) appState.submissions[idx] = result;
+    else appState.submissions.unshift(result);
+    toast('Topshiriq muvaffaqiyatli yuborildi! 🎉');
+    showSection('myResults');
   } catch (e) {
-    showToast('Yuborishda xato: ' + e.message, 'error');
+    toast('Yuborishda xato: ' + e.message, 'error');
   }
 }
 
-// ── Student results ────────────────────────────────────────────────────────
-function renderStudentResults() {
-  const wrap = document.getElementById('student-results');
-  if (!wrap) return;
+// ── Gamification Method ─────────────────────────────
+function openGameMethod(method) {
+  appState.gameState = { stageIndex: 0, stars: 0, streak: 0, answers: {}, answered: false };
+  const existing = appState.submissions.find(s => s.method_id === method.id);
+  if (existing) {
+    appState.gameState.stars = existing.stars || 0;
+  }
+  renderGame(method);
+}
 
-  if (!submissionsDB.length) {
-    wrap.innerHTML = `<div class="empty-state">Hali topshiriq yubormagansiz. Avval metodlardan birini ochib ish bajaring.</div>`;
+function renderGame(method) {
+  setPage(method.title, 'Bosqichma-bosqich savollarga javob bering');
+  const gs = appState.gameState;
+  const stages = method.stages;
+  const current = stages[gs.stageIndex];
+  const pct = Math.round((gs.stageIndex / stages.length) * 100);
+
+  const stagesHTML = stages.map((stage, i) => {
+    const isDone = i < gs.stageIndex;
+    const isCurrent = i === gs.stageIndex;
+    const isLocked = i > gs.stageIndex;
+    const cls = isDone ? 'completed' : isCurrent ? 'active' : 'locked';
+    return `
+      ${i > 0 ? `<div class="stage-connector ${isDone ? 'done' : ''}"></div>` : ''}
+      <div class="stage-item">
+        <div class="stage-icon ${cls}">
+          ${stage.icon}
+          ${isDone ? '<div class="stage-badge">✓</div>' : ''}
+          ${isLocked ? '<div style="position:absolute;bottom:-4px;right:-4px;font-size:0.8rem">🔒</div>' : ''}
+        </div>
+        <div class="stage-name">${esc(stage.name)}</div>
+        ${isCurrent ? '<div class="stage-label" style="color:var(--primary-light)">Joriy</div>' : ''}
+        ${isDone ? '<div class="stage-label" style="color:var(--green)">✅</div>' : ''}
+      </div>
+    `;
+  }).join('');
+
+  const totalMaxStars = stages.reduce((s, st) => s + st.stars, 0);
+  const medals = ['🥉', '🥈', '🥇'];
+  const thresholds = [Math.floor(totalMaxStars * 0.3), Math.floor(totalMaxStars * 0.6), totalMaxStars];
+
+  setContent(`
+    <button class="btn btn-outline btn-sm" style="margin-bottom:16px" onclick="showSection('methods')">← Orqaga</button>
+
+    <div class="game-stages">${stagesHTML}</div>
+
+    <div class="game-layout">
+      <div class="game-question-card" id="game-q-area">
+        <div class="game-q-header">
+          <span class="game-q-badge">${current.icon} ${esc(current.name)}</span>
+          <span style="color:var(--text2);font-size:0.85rem">Savol ${gs.stageIndex + 1}/${stages.length}</span>
+        </div>
+        <p class="game-q-text">❓ ${esc(current.question)}</p>
+        <div class="game-options" id="game-options">
+          ${current.options.map(opt => `
+            <button class="game-option" onclick="selectGameOption(this, '${esc(opt)}', '${esc(current.correct)}')">${esc(opt)}</button>
+          `).join('')}
+        </div>
+        <div id="game-result" style="display:none"></div>
+        <button class="game-next-btn" id="game-next-btn" style="display:none" onclick="nextGameStage('${method.id}')">
+          ${gs.stageIndex < stages.length - 1 ? 'Keyingi bosqich →' : '🏆 Yakunlash'}
+        </button>
+      </div>
+
+      <div class="rewards-panel">
+        <div class="rewards-card">
+          <div class="rewards-title">⭐ Yulduzlar</div>
+          <div class="stars-display">
+            <span class="stars-count">${gs.stars}</span>
+            <span class="stars-total">/ ${totalMaxStars}</span>
+          </div>
+          <div class="stars-bar">
+            <div class="stars-fill" style="width:${(gs.stars/totalMaxStars)*100}%"></div>
+          </div>
+          <div class="stars-next">Keyingi mukofot: ${thresholds.find(t => t > gs.stars) || totalMaxStars} yulduz</div>
+        </div>
+
+        <div class="rewards-card">
+          <div class="rewards-title">🏅 Medallar</div>
+          <div class="medals-grid">
+            ${medals.map((m, i) => `
+              <div class="medal ${gs.stars >= thresholds[i] ? 'earned' : 'locked'}" title="${thresholds[i]} yulduz kerak">${m}</div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="rewards-card">
+          <div class="rewards-title">🔥 Seriya</div>
+          <div class="streak-display">
+            <div class="streak-icon">🔥</div>
+            <div>
+              <div class="streak-count">${gs.streak}</div>
+              <div class="streak-text">ketma-ket to'g'ri javob</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rewards-card">
+          <div class="rewards-title">📊 Progress</div>
+          <div class="progress-stages">
+            ${stages.map((_, i) => `
+              <div class="progress-stage-dot ${i < gs.stageIndex ? 'done' : i === gs.stageIndex ? 'current' : ''}">${i+1}</div>
+            `).join('')}
+          </div>
+          <div class="progress-line">
+            <div class="progress-fill-bar" style="width:${pct}%"></div>
+          </div>
+          <div class="progress-pct">${pct}%</div>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+function selectGameOption(btn, selected, correct) {
+  if (appState.gameState.answered) return;
+  appState.gameState.answered = true;
+
+  const isCorrect = selected === correct;
+  const options = document.querySelectorAll('.game-option');
+  options.forEach(opt => {
+    opt.disabled = true;
+    if (opt.textContent.trim() === correct) opt.classList.add('correct');
+    else if (opt === btn && !isCorrect) opt.classList.add('wrong');
+  });
+
+  const result = document.getElementById('game-result');
+  result.style.display = 'flex';
+
+  if (isCorrect) {
+    const method = METHODS.find(m => m.id === 'gamification');
+    const stage = method.stages[appState.gameState.stageIndex];
+    appState.gameState.stars += stage.stars;
+    appState.gameState.streak++;
+    result.innerHTML = `
+      <div class="game-result-banner success">
+        🎉 Barakalla! 1-eshik ochildi! &nbsp;<strong>+${stage.stars} ⭐</strong>
+        ${appState.gameState.streak > 1 ? `&nbsp; 🔥 ${appState.gameState.streak} seriya!` : ''}
+      </div>`;
+  } else {
+    appState.gameState.streak = 0;
+    result.innerHTML = `
+      <div class="game-result-banner fail">
+        😔 To'g'ri javob: <strong>${esc(correct)}</strong>
+      </div>`;
+  }
+
+  document.getElementById('game-next-btn').style.display = 'block';
+}
+
+async function nextGameStage(methodId) {
+  const method = METHODS.find(m => m.id === methodId);
+  const gs = appState.gameState;
+  gs.stageIndex++;
+  gs.answered = false;
+
+  if (gs.stageIndex >= method.stages.length) {
+    // Game complete — submit
+    try {
+      const answers = {};
+      method.stages.forEach((stage, i) => { answers[`task${i+1}`] = stage.correct; });
+      const result = await API.submitWork(methodId, answers, gs.stars, gs.stars);
+      const idx = appState.submissions.findIndex(s => s.method_id === methodId);
+      if (idx > -1) appState.submissions[idx] = result;
+      else appState.submissions.unshift(result);
+    } catch (e) {}
+
+    showCelebration(gs.stars);
     return;
   }
 
-  wrap.innerHTML = `
-    <div class="submission-list">
-      ${submissionsDB.map(item => {
-        const methodId = item.method_id || item.methodId;
-        const radioCount = getAllTasksForMethod(methodId).filter(t => t.type === 'radio').length;
-        const xp = calculateXP(item);
-        const autoScore = item.auto_score ?? item.autoScore ?? 0;
+  renderGame(method);
+}
+
+function showCelebration(stars) {
+  const totalMaxStars = METHODS.find(m => m.id === 'gamification').stages.reduce((s,st) => s + st.stars, 0);
+  const pct = Math.round((stars / totalMaxStars) * 100);
+  const el = document.createElement('div');
+  el.className = 'celebration';
+  el.innerHTML = `
+    <div class="celebration-content">
+      <div class="celebration-emoji">🏆</div>
+      <div class="celebration-title">Tabriklaymiz!</div>
+      <div class="celebration-sub" style="margin:8px 0">Siz barcha bosqichlarni yakunladingiz!</div>
+      <div style="font-size:2rem;margin:12px 0">⭐ ${stars} / ${totalMaxStars}</div>
+      <div style="font-size:1rem;color:var(--text2);margin-bottom:20px">${pct}% natija</div>
+      <button class="btn btn-primary" onclick="this.closest('.celebration').remove(); showSection('myResults')">
+        Natijalarni ko'rish 🎯
+      </button>
+    </div>
+  `;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 10000);
+}
+
+// ── My Results ──────────────────────────────────────
+function renderMyResults() {
+  setPage('Natijalarim', 'O\'qituvchi baholagan ishlaringiz');
+  const subs = appState.submissions;
+
+  if (!subs.length) {
+    setContent(`<div class="section-card"><div class="empty-state"><div class="empty-icon">📭</div>Hali topshiriq yubormagansiz. Metodlardan birini ochib boshlang!</div></div>`);
+    return;
+  }
+
+  setContent(`
+    <div class="submissions-list">
+      ${subs.map(sub => {
+        const method = METHODS.find(m => m.id === sub.method_id);
         return `
           <div class="submission-card">
             <div class="submission-head">
               <div>
-                <h3>${escapeHtml(getMethodTitle(methodId))}</h3>
-                <div class="meta-line">
-                  <span class="mini-tag"><i class="fas fa-calendar-alt"></i> ${escapeHtml(item.submitted_at || item.submittedAt || '')}</span>
-                  <span class="status-pill ${escapeHtml(item.status)}">${item.status === 'graded' ? 'Baholangan' : 'Tekshirilmoqda'}</span>
-                  <span class="score-pill"><i class="fas fa-bolt"></i> Avto ball: ${autoScore}/${radioCount}</span>
-                  <span class="score-pill"><i class="fas fa-star"></i> ${xp} XP</span>
+                <h4>${method?.emoji || '📚'} ${esc(getMethodTitle(sub.method_id))}</h4>
+                <div class="meta-row">
+                  <span class="meta-tag">📅 ${esc(sub.submitted_at || '')}</span>
+                  <span class="status-pill ${sub.status}">${sub.status === 'graded' ? '✅ Baholangan' : '⏳ Tekshirilmoqda'}</span>
+                  ${sub.stars ? `<span class="meta-tag">⭐ ${sub.stars} yulduz</span>` : ''}
                 </div>
               </div>
-              <button class="card-btn" onclick="openMethod('${methodId}')">Qayta ko'rish</button>
+              <button class="btn btn-outline btn-sm" onclick="openMethod('${sub.method_id}')">Qayta ko'rish</button>
             </div>
-            <div class="answer-box">
-              <div class="answer-title">O'qituvchi bahosi</div>
-              <strong>${item.grade ? escapeHtml(item.grade) : "Hali qo'yilmagan"}</strong>
-              <div style="margin-top:10px;">
-                ${item.comment ? nl2brSafe(item.comment) : '<span class="subtle">Izoh hali yozilmagan</span>'}
-              </div>
-            </div>
-          </div>`;
+            ${sub.status === 'graded' ? `
+              <div class="answer-block">
+                <div class="answer-label">O'qituvchi bahosi</div>
+                <strong style="font-size:1.2rem;color:var(--primary-light)">${esc(sub.grade)}/100</strong>
+                ${sub.comment ? `<p style="margin-top:8px;color:var(--text2)">${esc(sub.comment)}</p>` : ''}
+              </div>` : `
+              <div class="answer-block" style="color:var(--text2)">⏳ O'qituvchi tekshirmoqda...</div>`}
+          </div>
+        `;
       }).join('')}
-    </div>`;
+    </div>
+  `);
 }
 
-function getMethodTitle(methodId) {
-  return METHODS.find(m => m.id === methodId)?.title || 'Metod';
-}
-
-// ── Teacher dashboard ──────────────────────────────────────────────────────
-function renderTeacherDashboard() {
-  const graded = submissionsDB.filter(s => s.status === 'graded');
-  const uniqueStudents = new Set(submissionsDB.map(s => `${s.student_name}|${s.student_class}`)).size;
-  const avgGrade = graded.length
-    ? (graded.reduce((sum, s) => sum + Number(s.grade || 0), 0) / graded.length).toFixed(1) : '-';
-
-  const statsWrap = document.querySelector('.teacher-stats');
-  if (statsWrap) {
-    statsWrap.innerHTML = [
-      { label: 'Topshirilgan ishlar', value: submissionsDB.length, help: "Barcha metodlar bo'yicha jami ishlar" },
-      { label: "Faol o'quvchilar", value: uniqueStudents, help: "Kamida 1 ta ish yuborgan o'quvchilar" },
-      { label: 'Baholangan ishlar', value: graded.length, help: "Tekshirilib baho qo'yilgan ishlar" },
-      { label: "O'rtacha baho", value: avgGrade, help: 'Faqat baholangan ishlar asosida' },
-    ].map(stat => `
-      <div class="stat-card">
-        <div class="label">${escapeHtml(stat.label)}</div>
-        <div class="value">${escapeHtml(String(stat.value))}</div>
-        <div class="help">${escapeHtml(stat.help)}</div>
-      </div>`).join('');
-  }
-
-  const recentWrap = document.getElementById('recent-submissions');
-  if (recentWrap) {
-    recentWrap.innerHTML = submissionsDB.length
-      ? `<div class="submission-list">
-          ${submissionsDB.slice(0, 5).map(item => `
-            <div class="submission-card">
-              <div class="submission-head">
-                <div>
-                  <h3>${escapeHtml(item.student_name)}</h3>
-                  <div class="meta-line">
-                    <span class="mini-tag">${escapeHtml(item.student_class)}</span>
-                    <span class="mini-tag">${escapeHtml(getMethodTitle(item.method_id))}</span>
-                    <span class="status-pill ${escapeHtml(item.status)}">${item.status === 'graded' ? 'Baholangan' : 'Tekshirilmagan'}</span>
-                  </div>
-                </div>
-                <button class="card-btn" onclick="showSection('submissions')">Ko'rish</button>
-              </div>
-            </div>`).join('')}
-        </div>`
-      : `<div class="empty-state">Hali biror topshiriq yuborilmagan.</div>`;
-  }
-
-  const usageWrap = document.getElementById('method-usage');
-  if (usageWrap) {
-    const usage = METHODS.map(method => {
-      const count = submissionsDB.filter(s => s.method_id === method.id).length;
-      const percent = submissionsDB.length ? Math.round((count / submissionsDB.length) * 100) : 0;
-      return `
-        <div class="progress-item">
-          <div class="progress-top"><strong>${escapeHtml(method.title)}</strong><span class="subtle">${count} ta</span></div>
-          <div class="progress-bar"><div class="progress-fill" style="width:${percent}%"></div></div>
-        </div>`;
-    }).join('');
-    usageWrap.innerHTML = `<div class="progress-wrap">${usage}</div>`;
-  }
-}
-
-// ── Teacher submissions ────────────────────────────────────────────────────
-async function renderTeacherSubmissions() {
-  const search = document.getElementById('submission-search')?.value?.trim().toLowerCase() || '';
-  const statusFilter = document.getElementById('submission-status')?.value || 'all';
-
+// ── Leaderboard ─────────────────────────────────────
+async function renderLeaderboard() {
+  setPage('Reyting', 'Eng faol o\'quvchilar');
+  setContent('<div class="section-card"><div class="empty-state">⏳ Yuklanmoqda...</div></div>');
   try {
-    submissionsDB = await API.getAllSubmissions(statusFilter, search);
-  } catch (e) { /* use cached */ }
+    const board = await API.getLeaderboard();
+    if (!board.length) {
+      setContent('<div class="section-card"><div class="empty-state"><div class="empty-icon">👑</div>Hali hech kim ro\'yxatda yo\'q</div></div>');
+      return;
+    }
+    const meLogin = appState.user?.login;
+    setContent(`
+      <div class="section-card">
+        <div class="leaderboard-list">
+          ${board.map((u, i) => `
+            <div class="leaderboard-item ${i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : ''}">
+              <div class="rank-badge">${i < 3 ? ['🥇','🥈','🥉'][i] : i+1}</div>
+              <div class="leaderboard-info">
+                <div class="leaderboard-name">${esc(u.full_name)}</div>
+                <div class="leaderboard-class">${esc(u.student_class)} · ${u.works} ta ish</div>
+              </div>
+              <div style="text-align:right">
+                <div class="leaderboard-xp">${u.xp} XP</div>
+                <div class="leaderboard-stars">${'⭐'.repeat(Math.min(u.stars || 0, 5))}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `);
+  } catch (e) { toast('Reyting yuklanmadi', 'error'); }
+}
 
-  const filtered = submissionsDB.filter(item => {
-    const hay = `${item.student_name} ${item.student_class} ${getMethodTitle(item.method_id)}`.toLowerCase();
-    return hay.includes(search);
+// ── Teacher Dashboard ───────────────────────────────
+function renderTeacherDashboard() {
+  setPage('O\'qituvchi paneli', 'Umumiy statistika');
+  const subs = appState.submissions;
+  const students = new Set(subs.map(s => s.student_name)).size;
+  const graded = subs.filter(s => s.status === 'graded').length;
+  const pending = subs.filter(s => s.status === 'pending').length;
+
+  const methodUsage = METHODS.map(m => {
+    const count = subs.filter(s => s.method_id === m.id).length;
+    const pct = subs.length ? Math.round((count / subs.length) * 100) : 0;
+    return { title: m.title, emoji: m.emoji, count, pct };
   });
 
-  const wrap = document.getElementById('teacher-submissions');
-  if (!wrap) return;
-  wrap.innerHTML = filtered.length
-    ? `<div class="submission-list">${filtered.map(item => renderTeacherSubmissionCard(item)).join('')}</div>`
-    : `<div class="empty-state">Mos keladigan topshiriq topilmadi.</div>`;
+  setContent(`
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-value">${students}</div><div class="stat-label">🎓 Faol o'quvchilar</div></div>
+      <div class="stat-card"><div class="stat-value">${subs.length}</div><div class="stat-label">📤 Jami topshiriqlar</div></div>
+      <div class="stat-card"><div class="stat-value">${pending}</div><div class="stat-label">⏳ Tekshirilmagan</div></div>
+      <div class="stat-card"><div class="stat-value">${graded}</div><div class="stat-label">✅ Baholangan</div></div>
+    </div>
+
+    <div class="two-col">
+      <div class="section-card">
+        <div class="section-head"><div><h3>📋 Oxirgi topshiriqlar</h3></div>
+          <button class="btn btn-primary btn-sm" onclick="showSection('teacherSubmissions')">Barchasi</button>
+        </div>
+        ${subs.slice(0,5).map(s => `
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+            <div>
+              <strong style="font-size:0.9rem">${esc(s.student_name)}</strong>
+              <div style="font-size:0.8rem;color:var(--text2)">${esc(getMethodTitle(s.method_id))}</div>
+            </div>
+            <span class="status-pill ${s.status}">${s.status === 'graded' ? '✅' : '⏳'}</span>
+          </div>
+        `).join('') || '<div class="empty-state">Hali topshiriq yo\'q</div>'}
+      </div>
+
+      <div class="section-card">
+        <div class="section-head"><div><h3>📊 Metodlar bo'yicha</h3></div></div>
+        ${methodUsage.map(m => `
+          <div style="margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:0.9rem">
+              <span>${m.emoji} ${esc(m.title)}</span>
+              <span style="color:var(--text2)">${m.count} ta</span>
+            </div>
+            <div style="height:6px;background:var(--bg3);border-radius:3px;overflow:hidden">
+              <div style="height:100%;width:${m.pct}%;background:var(--primary);border-radius:3px;transition:width 0.8s"></div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `);
 }
 
-function renderAnswerHTML(task, ans, item, taskIndex) {
-  if (task.type === 'cluster-map' && typeof ans === 'object' && ans !== null) {
-    return `<div style="margin-top:8px;">
-      ${task.branches.map((branch, bIndex) => `
-        <div class="answer-box" style="margin-bottom:8px;">
-          <strong>${escapeHtml(branch)}:</strong><br>
-          ${nl2brSafe(ans[`branch${bIndex}`] || '')}
-        </div>`).join('')}
-    </div>`;
+// ── Teacher Submissions ─────────────────────────────
+async function renderTeacherSubmissions(filter = 'all', q = '') {
+  setPage('Topshiriqlar', 'O\'quvchilar ishlarini tekshiring va baholang');
+
+  let subs = appState.submissions;
+  if (filter !== 'all') subs = subs.filter(s => s.status === filter);
+  if (q) {
+    const lq = q.toLowerCase();
+    subs = subs.filter(s => s.student_name?.toLowerCase().includes(lq) || getMethodTitle(s.method_id).toLowerCase().includes(lq));
   }
-  if (task.type === 'video') return `<div style="margin-top:8px;">${escapeHtml(ans || "Video ko'rildi")}</div>`;
-  if (task.type === 'project-box') {
-    const codeValue = item?.answers?.[`task${taskIndex + 1}_code`] || '';
-    return `<div style="margin-top:8px;">
-      <div class="answer-title">O'quvchi kiritgan kod</div>
-      <pre style="white-space:pre-wrap;word-break:break-word;">${escapeHtml(codeValue)}</pre>
-    </div>`;
-  }
-  if (task.type === 'case-box') {
-    return `<div style="margin-top:8px;" class="subtle">Mazkur topshiriq informatsion blok sifatida ko'rsatildi.</div>`;
-  }
-  return `<div style="margin-top:8px;">${nl2brSafe(ans || '')}</div>`;
+
+  setContent(`
+    <div class="filters-row">
+      <input class="filter-input" placeholder="🔍 O'quvchi yoki metod bo'yicha qidirish" id="sub-search" value="${esc(q)}"
+        oninput="renderTeacherSubmissions(document.getElementById('sub-filter').value, this.value)"/>
+      <select class="filter-select" id="sub-filter" onchange="renderTeacherSubmissions(this.value, document.getElementById('sub-search').value)">
+        <option value="all" ${filter==='all'?'selected':''}>Barcha</option>
+        <option value="pending" ${filter==='pending'?'selected':''}>⏳ Tekshirilmagan</option>
+        <option value="graded" ${filter==='graded'?'selected':''}>✅ Baholangan</option>
+      </select>
+    </div>
+    <div class="submissions-list">
+      ${subs.length ? subs.map(s => renderTeacherSubCard(s)).join('') : '<div class="section-card"><div class="empty-state"><div class="empty-icon">📭</div>Topshiriq topilmadi</div></div>'}
+    </div>
+  `);
 }
 
-function renderTeacherSubmissionCard(item) {
-  const method = METHODS.find(m => m.id === item.method_id);
-  if (!method) return '';
-  const radioCount = getAllTasksForMethod(item.method_id).filter(t => t.type === 'radio').length;
-  const tasks = getAllTasksForMethod(item.method_id);
-  const xp = calculateXP(item);
-  const autoScore = item.auto_score ?? 0;
-
+function renderTeacherSubCard(sub) {
+  const method = METHODS.find(m => m.id === sub.method_id);
+  const tasks = getAllTasks(sub.method_id);
   return `
-    <div class="submission-card">
+    <div class="submission-card" id="sub-${sub.id}">
       <div class="submission-head">
         <div>
-          <h3>${escapeHtml(item.student_name)}</h3>
-          <div class="meta-line">
-            <span class="mini-tag"><i class="fas fa-user"></i> ${escapeHtml(item.student_class)}</span>
-            <span class="mini-tag"><i class="fas fa-book"></i> ${escapeHtml(method.title)}</span>
-            <span class="mini-tag"><i class="fas fa-calendar-alt"></i> ${escapeHtml(item.submitted_at || '')}</span>
-            <span class="status-pill ${escapeHtml(item.status)}">${item.status === 'graded' ? 'Baholangan' : 'Tekshirilmagan'}</span>
-            <span class="score-pill"><i class="fas fa-bolt"></i> Avto ball ${autoScore}/${radioCount}</span>
-            <span class="score-pill"><i class="fas fa-star"></i> ${xp} XP</span>
+          <h4>🎓 ${esc(sub.student_name)} &nbsp;<span style="color:var(--text2);font-weight:600">${esc(sub.student_class)}</span></h4>
+          <div class="meta-row">
+            <span class="meta-tag">${method?.emoji || '📚'} ${esc(getMethodTitle(sub.method_id))}</span>
+            <span class="meta-tag">📅 ${esc(sub.submitted_at || '')}</span>
+            <span class="status-pill ${sub.status}">${sub.status === 'graded' ? '✅ Baholangan' : '⏳ Tekshirilmagan'}</span>
+            ${sub.stars ? `<span class="meta-tag">⭐ ${sub.stars}</span>` : ''}
           </div>
         </div>
       </div>
-      ${tasks.map((task, idx) => {
-        const ans = item.answers[`task${idx + 1}`];
+      ${tasks.slice(0, 3).map((task, i) => {
+        const key = `task${i+1}`;
+        const ans = sub.answers?.[key];
+        if (!ans || task.type === 'video' || task.type === 'case-box') return '';
         return `
-          <div class="answer-box">
-            <div class="answer-title">${idx + 1}-topshiriq</div>
-            <strong>${escapeHtml(task.question || task.title || 'Topshiriq')}</strong>
-            ${renderAnswerHTML(task, ans, item, idx)}
+          <div class="answer-block" style="margin-bottom:8px">
+            <div class="answer-label">${i+1}-topshiriq: ${esc(task.question || task.title || '')}</div>
+            ${typeof ans === 'object' ? Object.values(ans).join(', ') : esc(String(ans))}
           </div>`;
       }).join('')}
       <div class="grade-row">
-        <input type="number" min="1" max="100" class="grade-input"
-          id="grade-${item.id}" value="${escapeHtml(item.grade || '')}" placeholder="Baho" />
-        <textarea id="comment-${item.id}" placeholder="Izoh yozing...">${escapeHtml(item.comment || '')}</textarea>
-        <button class="main-btn" onclick="saveGrade(${item.id})">Saqlash</button>
+        <input type="number" min="1" max="100" class="grade-input" id="grade-${sub.id}"
+          value="${esc(sub.grade)}" placeholder="Baho (1-100)"/>
+        <textarea class="comment-input" id="comment-${sub.id}"
+          placeholder="Izoh yozing...">${esc(sub.comment)}</textarea>
+        <button class="btn btn-primary btn-sm" onclick="saveGrade(${sub.id})">💾 Saqlash</button>
       </div>
     </div>`;
 }
 
-async function saveGrade(submissionId) {
-  const gradeInput = document.getElementById(`grade-${submissionId}`);
-  const commentInput = document.getElementById(`comment-${submissionId}`);
-  const grade = gradeInput?.value?.trim();
-  const comment = commentInput?.value?.trim() || '';
-
-  const numericGrade = Number(grade);
-  if (!grade || isNaN(numericGrade) || numericGrade < 1 || numericGrade > 100) {
-    showToast("Baho 1–100 orasida bo'lishi kerak!", 'error');
-    return;
-  }
-
+async function saveGrade(subId) {
+  const grade = document.getElementById(`grade-${subId}`)?.value?.trim();
+  const comment = document.getElementById(`comment-${subId}`)?.value?.trim() || '';
+  if (!grade || isNaN(+grade) || +grade < 1 || +grade > 100) { toast('Baho 1–100 orasida bo\'lishi kerak!', 'error'); return; }
   try {
-    const updated = await API.gradeSubmission(submissionId, numericGrade, comment);
-    const idx = submissionsDB.findIndex(s => s.id === submissionId);
-    if (idx > -1) submissionsDB[idx] = updated;
-
-    renderTeacherDashboard();
+    const updated = await API.gradeSubmission(subId, +grade, comment);
+    const idx = appState.submissions.findIndex(s => s.id === subId);
+    if (idx > -1) appState.submissions[idx] = updated;
+    toast('Baho saqlandi! ✅');
     renderTeacherSubmissions();
-    if (appState.currentTeacherMethodId) renderTeacherMethodDetail(appState.currentTeacherMethodId);
-    showToast('Baho va izoh saqlandi!');
-  } catch (e) {
-    showToast('Saqlashda xato: ' + e.message, 'error');
-  }
+  } catch (e) { toast('Xato: ' + e.message, 'error'); }
 }
 
-// ── Teacher methods ────────────────────────────────────────────────────────
-function renderTeacherMethods() {
-  const grid = document.getElementById('teacher-methods-grid');
-  if (!grid) return;
-  grid.innerHTML = METHODS.map(m => renderMethodCard(m, true)).join('');
-}
-
-function openTeacherMethod(methodId) {
-  appState.currentTeacherMethodId = methodId;
-  renderTeacherMethodDetail(methodId);
-  showSection('teacherMethodDetail');
-}
-
-function renderTeacherMethodDetail(methodId) {
-  const method = METHODS.find(m => m.id === methodId);
-  const list = submissionsDB.filter(s => s.method_id === methodId);
-  const wrap = document.getElementById('teacher-method-detail');
-  if (!method || !wrap) return;
-
-  wrap.innerHTML = `
-    <div class="section-card">
-      <div class="section-head">
-        <div>
-          <h3>${escapeHtml(method.title)}</h3>
-          <p class="subtle">Shu metod bo'yicha yuborilgan barcha topshiriqlar</p>
-        </div>
-        <button class="main-btn small-btn" onclick="showSection('teacherMethods')">Ortga</button>
-      </div>
-      ${list.length
-        ? `<div class="submission-list">${list.map(item => renderTeacherSubmissionCard(item)).join('')}</div>`
-        : `<div class="empty-state">Bu metod bo'yicha hali hech kim topshiriq yubormagan.</div>`}
-    </div>`;
-}
-
-// ── Teacher task builder ───────────────────────────────────────────────────
-function openTeacherTaskBuilder(methodId) {
-  appState.currentTeacherMethodId = methodId;
-  renderTeacherTaskBuilder(methodId);
-  showSection('teacherTaskBuilder');
-}
-
-function renderCustomTaskList(methodId) {
-  const records = customTasksDB[`${methodId}_records`] || [];
-  const tasks = customTasksDB[methodId] || [];
-  if (!tasks.length) return `<div class="empty-state">Hali qo'shimcha topshiriq qo'shilmagan.</div>`;
-
-  return `
-    <div class="submission-list">
-      ${tasks.map((task, idx) => `
-        <div class="submission-card">
-          <div class="answer-title">Qo'shimcha topshiriq ${idx + 1}</div>
-          <strong>${escapeHtml(task.question || task.title || 'Topshiriq')}</strong>
-          <div class="subtle" style="margin-top:8px;">Turi: ${escapeHtml(task.type)}</div>
-          <button class="main-btn small-btn" style="margin-top:10px;background:red;"
-            onclick="deleteTeacherTask('${methodId}', ${records[idx]?.id || idx})">
-            O'chirish
+// ── Teacher Methods Panel ───────────────────────────
+function renderTeacherMethodsPanel() {
+  setPage('Metodlar boshqaruvi', 'Har bir metod uchun qo\'shimcha topshiriqlar qo\'shing');
+  setContent(`
+    <div class="methods-grid">
+      ${METHODS.map(m => `
+        <div class="method-card" style="--method-color:${m.color}">
+          <div class="method-emoji">${m.emoji}</div>
+          <div class="method-title">${esc(m.title)}</div>
+          <div class="method-desc">${esc(m.desc)}</div>
+          <button class="method-btn" style="background:${m.color};margin-top:12px" onclick="openTeacherMethodDetail('${m.id}')">
+            🔧 Topshiriqlarni boshqarish
           </button>
-        </div>`).join('')}
-    </div>`;
-}
-
-async function deleteTeacherTask(methodId, taskId) {
-  if (!confirm("Rostdan ham o'chirmoqchimisiz?")) return;
-  try {
-    await API.deleteCustomTask(taskId);
-    // Refresh cache
-    const allTasks = await API.getCustomTasks();
-    customTasksDB = {};
-    allTasks.forEach(t => {
-      if (!customTasksDB[t.method_id]) customTasksDB[t.method_id] = [];
-      if (!customTasksDB[`${t.method_id}_records`]) customTasksDB[`${t.method_id}_records`] = [];
-      customTasksDB[t.method_id].push(t.task_data);
-      customTasksDB[`${t.method_id}_records`].push(t);
-    });
-    showToast("Topshiriq o'chirildi!");
-    renderTeacherTaskBuilder(methodId);
-  } catch (e) {
-    showToast("O'chirishda xato: " + e.message, 'error');
-  }
-}
-
-async function saveTeacherTask(methodId) {
-  const method = METHODS.find(m => m.id === methodId);
-  if (!method) return;
-  let newTask = null;
-
-  if (methodId === 'brainstorming') {
-    const question = document.getElementById('builder-question')?.value.trim();
-    const type = document.getElementById('builder-type')?.value;
-    if (!question) { showToast('Savolni kiriting!', 'error'); return; }
-    if (type === 'radio') {
-      const optionsRaw = document.getElementById('builder-options')?.value.trim();
-      const correct = document.getElementById('builder-correct')?.value.trim();
-      if (!optionsRaw || !correct) { showToast("Variantlar va to'g'ri javobni kiriting!", 'error'); return; }
-      newTask = { type: 'radio', question, options: optionsRaw.split(',').map(s => s.trim()).filter(Boolean), correct };
-    } else {
-      newTask = { type: 'text', question, placeholder: 'Javobingizni shu yerga yozing...' };
-    }
-  } else if (methodId === 'cluster') {
-    const center = document.getElementById('builder-center')?.value.trim();
-    const branchesRaw = document.getElementById('builder-branches')?.value.trim();
-    if (!center || !branchesRaw) { showToast("Markaziy tushuncha va bo'limlarni kiriting!", 'error'); return; }
-    newTask = { type: 'cluster-map', question: `"${center}" mavzusi bo'yicha klaster tuzing.`, center, branches: branchesRaw.split(',').map(s => s.trim()).filter(Boolean) };
-  } else if (methodId === 'project') {
-    const title = document.getElementById('builder-title')?.value.trim();
-    const description = document.getElementById('builder-description')?.value.trim();
-    const includesRaw = document.getElementById('builder-includes')?.value.trim();
-    const codeSample = document.getElementById('builder-code')?.value.trim();
-    if (!title || !description || !includesRaw) { showToast('Barcha maydonlarni to\'ldiring!', 'error'); return; }
-    newTask = { type: 'project-box', title, description, includes: includesRaw.split(',').map(s => s.trim()).filter(Boolean), codeSample: codeSample || '' };
-  } else if (methodId === 'case') {
-    const title = document.getElementById('builder-title')?.value.trim();
-    const description = document.getElementById('builder-description')?.value.trim();
-    if (!title || !description) { showToast('Sarlavha va tavsifni kiriting!', 'error'); return; }
-    newTask = { type: 'case-box', title, description };
-  } else if (methodId === 'flipped') {
-    const type = document.getElementById('builder-type')?.value;
-    const question = document.getElementById('builder-question')?.value.trim();
-    const videoUrl = document.getElementById('builder-video')?.value.trim();
-    if (type === 'video') {
-      if (!question || !videoUrl) { showToast('Savol va video linkni kiriting!', 'error'); return; }
-      newTask = { type: 'video', question, videoUrl: normalizeYoutubeUrl(videoUrl) };
-    } else if (type === 'radio') {
-      const optionsRaw = document.getElementById('builder-options')?.value.trim();
-      const correct = document.getElementById('builder-correct')?.value.trim();
-      if (!question || !optionsRaw || !correct) { showToast('Barcha maydonlarni to\'ldiring!', 'error'); return; }
-      newTask = { type: 'radio', question, options: optionsRaw.split(',').map(s => s.trim()).filter(Boolean), correct };
-    } else {
-      if (!question) { showToast('Savolni kiriting!', 'error'); return; }
-      newTask = { type: 'text', question, placeholder: 'Javobingizni shu yerga yozing...' };
-    }
-  } else if (methodId === 'gamification') {
-    const question = document.getElementById('builder-question')?.value.trim();
-    const optionsRaw = document.getElementById('builder-options')?.value.trim();
-    const correct = document.getElementById('builder-correct')?.value.trim();
-    if (!question || !optionsRaw || !correct) { showToast('Barcha maydonlarni to\'ldiring!', 'error'); return; }
-    newTask = { type: 'radio', question, options: optionsRaw.split(',').map(s => s.trim()).filter(Boolean), correct };
-  }
-
-  if (!newTask) { showToast("Topshiriqni saqlab bo'lmadi!", 'error'); return; }
-
-  try {
-    const created = await API.createCustomTask(methodId, newTask);
-    if (!customTasksDB[methodId]) customTasksDB[methodId] = [];
-    if (!customTasksDB[`${methodId}_records`]) customTasksDB[`${methodId}_records`] = [];
-    customTasksDB[methodId].push(newTask);
-    customTasksDB[`${methodId}_records`].push(created);
-    showToast("Yangi topshiriq qo'shildi!");
-    renderTeacherTaskBuilder(methodId);
-  } catch (e) {
-    showToast('Saqlashda xato: ' + e.message, 'error');
-  }
-}
-
-function normalizeYoutubeUrl(url) {
-  if (!url) return '';
-  if (url.includes('youtube.com/embed/')) return url;
-  if (url.includes('youtu.be/')) return `https://www.youtube.com/embed/${url.split('youtu.be/')[1].split('?')[0]}`;
-  if (url.includes('watch?v=')) return `https://www.youtube.com/embed/${url.split('watch?v=')[1].split('&')[0]}`;
-  return url;
-}
-
-// renderTaskBuilderForm — identical to original (pure UI, no data changes)
-function renderTaskBuilderForm(methodId) {
-  if (methodId === 'brainstorming') return `
-    <div class="task-card">
-      <h4>Aqliy hujum uchun yangi topshiriq</h4>
-      <textarea id="builder-question" placeholder="Savol yoki topshiriq matni"></textarea>
-      <select id="builder-type" style="margin-top:12px;">
-        <option value="text">Matnli javob</option>
-        <option value="radio">Test savol</option>
-      </select>
-      <div id="builder-radio-fields" style="margin-top:12px;display:none;">
-        <input id="builder-options" type="text" placeholder="Variantlar vergul bilan: A,B,C,D" />
-        <input id="builder-correct" type="text" placeholder="To'g'ri javob" style="margin-top:12px;" />
-      </div>
-      <button class="main-btn" style="margin-top:16px;" onclick="saveTeacherTask('${methodId}')">Saqlash</button>
-    </div>`;
-  if (methodId === 'cluster') return `
-    <div class="task-card">
-      <h4>Klaster uchun yangi topshiriq</h4>
-      <input id="builder-center" type="text" placeholder="Markaziy tushuncha" />
-      <input id="builder-branches" type="text" placeholder="Bo'limlar vergul bilan: Qurilmalar,Dasturlar,Internet" style="margin-top:12px;" />
-      <button class="main-btn" style="margin-top:16px;" onclick="saveTeacherTask('${methodId}')">Saqlash</button>
-    </div>`;
-  if (methodId === 'project') return `
-    <div class="task-card">
-      <h4>Project-Based Learning uchun yangi topshiriq</h4>
-      <input id="builder-title" type="text" placeholder="Loyiha sarlavhasi" />
-      <textarea id="builder-description" placeholder="Loyiha tavsifi" style="margin-top:12px;"></textarea>
-      <input id="builder-includes" type="text" placeholder="Ichida bo'ladigan bandlar vergul bilan" style="margin-top:12px;" />
-      <textarea id="builder-code" class="code-editor" placeholder="Misol kod" style="margin-top:12px;"></textarea>
-      <button class="main-btn" style="margin-top:16px;" onclick="saveTeacherTask('${methodId}')">Saqlash</button>
-    </div>`;
-  if (methodId === 'case') return `
-    <div class="task-card">
-      <h4>Case Study uchun yangi topshiriq</h4>
-      <input id="builder-title" type="text" placeholder="Muammo sarlavhasi" />
-      <textarea id="builder-description" placeholder="Muammoli vaziyat tavsifi" style="margin-top:12px;"></textarea>
-      <button class="main-btn" style="margin-top:16px;" onclick="saveTeacherTask('${methodId}')">Saqlash</button>
-    </div>`;
-  if (methodId === 'flipped') return `
-    <div class="task-card">
-      <h4>Flipped Classroom uchun yangi topshiriq</h4>
-      <select id="builder-type">
-        <option value="video">Video topshiriq</option>
-        <option value="text">Matnli savol</option>
-        <option value="radio">Test savol</option>
-      </select>
-      <textarea id="builder-question" placeholder="Savol yoki topshiriq matni" style="margin-top:12px;"></textarea>
-      <input id="builder-video" type="text" placeholder="Video iframe link" style="margin-top:12px;" />
-      <div id="builder-radio-fields" style="margin-top:12px;display:none;">
-        <input id="builder-options" type="text" placeholder="Variantlar vergul bilan: A,B,C,D" />
-        <input id="builder-correct" type="text" placeholder="To'g'ri javob" style="margin-top:12px;" />
-      </div>
-      <button class="main-btn" style="margin-top:16px;" onclick="saveTeacherTask('${methodId}')">Saqlash</button>
-    </div>`;
-  if (methodId === 'gamification') return `
-    <div class="task-card">
-      <h4>Gamifikatsiya uchun yangi topshiriq</h4>
-      <textarea id="builder-question" placeholder="Test savol matni"></textarea>
-      <input id="builder-options" type="text" placeholder="Variantlar vergul bilan: A,B,C,D" style="margin-top:12px;" />
-      <input id="builder-correct" type="text" placeholder="To'g'ri javob" style="margin-top:12px;" />
-      <button class="main-btn" style="margin-top:16px;" onclick="saveTeacherTask('${methodId}')">Saqlash</button>
-    </div>`;
-  return `<div class="empty-state">Bu metod uchun forma topilmadi.</div>`;
-}
-
-function renderTeacherTaskBuilder(methodId) {
-  const method = METHODS.find(m => m.id === methodId);
-  const wrap = document.getElementById('teacher-task-builder');
-  if (!method || !wrap) return;
-
-  wrap.innerHTML = `
-    <div class="section-card">
-      <div class="section-head">
-        <div>
-          <h3>${escapeHtml(method.title)} — Topshiriq qo'shish</h3>
-          <p class="subtle">Bu metod uchun o'ziga mos yangi topshiriq qo'shing</p>
         </div>
-        <button class="main-btn small-btn" onclick="showSection('teacherMethods')">Ortga</button>
-      </div>
-      ${renderTaskBuilderForm(methodId)}
-      <div class="section-card mt-24" style="padding:18px;">
-        <h3 style="margin-bottom:12px;">Qo'shilgan topshiriqlar</h3>
-        <div id="custom-task-list">${renderCustomTaskList(methodId)}</div>
-      </div>
-    </div>`;
-
-  const typeSelect = document.getElementById('builder-type');
-  const radioFields = document.getElementById('builder-radio-fields');
-  const videoInput = document.getElementById('builder-video');
-  if (typeSelect) {
-    const refresh = () => {
-      if (radioFields) radioFields.style.display = typeSelect.value === 'radio' ? 'block' : 'none';
-      if (videoInput) videoInput.style.display = typeSelect.value === 'video' ? 'block' : 'none';
-    };
-    typeSelect.addEventListener('change', refresh);
-    refresh();
-  }
+      `).join('')}
+    </div>
+  `);
 }
 
-// ── Global function exports ────────────────────────────────────────────────
-window.switchTab = switchTab;
-window.enterApp = enterApp;
-window.logoutApp = logoutApp;
-window.showSection = showSection;
-window.openMethod = openMethod;
-window.submitMethodWork = submitMethodWork;
-window.renderTeacherSubmissions = renderTeacherSubmissions;
-window.saveGrade = saveGrade;
-window.openTeacherMethod = openTeacherMethod;
-window.openTeacherTaskBuilder = openTeacherTaskBuilder;
-window.saveTeacherTask = saveTeacherTask;
-window.deleteTeacherTask = deleteTeacherTask;
+function openTeacherMethodDetail(methodId) {
+  const method = METHODS.find(m => m.id === methodId);
+  setPage(`${method.emoji} ${method.title}`, 'Qo\'shimcha topshiriqlar');
+  const custom = appState.customTasks[methodId] || [];
 
-// ── Theme toggle (unchanged) ───────────────────────────────────────────────
-const toggleBtn = document.getElementById('theme-toggle');
-function setTheme(mode) {
-  if (!toggleBtn) return;
-  if (mode === 'light') {
-    document.body.classList.add('light-mode');
-    toggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
-    localStorage.setItem('theme', 'light');
-  } else {
-    document.body.classList.remove('light-mode');
-    toggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
-    localStorage.setItem('theme', 'dark');
-  }
-}
-if (toggleBtn) {
-  toggleBtn.addEventListener('click', () => {
-    setTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light');
+  setContent(`
+    <button class="btn btn-outline btn-sm" style="margin-bottom:16px" onclick="renderTeacherMethodsPanel()">← Orqaga</button>
+    <div class="two-col">
+      <div class="section-card">
+        <h3 style="margin-bottom:16px">➕ Yangi topshiriq qo'shish</h3>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <select class="filter-select" id="new-task-type" style="width:100%">
+            <option value="text">📝 Matnli javob</option>
+            <option value="radio">🔘 Test savol</option>
+          </select>
+          <textarea id="new-task-q" placeholder="Savol matni..." class="comment-input" style="min-height:80px;width:100%"></textarea>
+          <div id="new-task-options-wrap">
+            <input type="text" id="new-task-options" class="filter-input" placeholder="Variantlar vergul bilan: A,B,C,D" style="width:100%"/>
+            <input type="text" id="new-task-correct" class="filter-input" placeholder="To'g'ri javob" style="width:100%;margin-top:8px"/>
+          </div>
+          <button class="btn btn-primary" onclick="addCustomTask('${methodId}')">➕ Qo'shish</button>
+        </div>
+      </div>
+      <div class="section-card">
+        <h3 style="margin-bottom:16px">📋 Mavjud qo'shimcha topshiriqlar (${custom.length})</h3>
+        ${custom.length ? custom.map((task, i) => `
+          <div style="padding:12px;background:var(--bg3);border-radius:10px;margin-bottom:8px">
+            <div style="font-weight:700;font-size:0.9rem;margin-bottom:4px">${i+1}. ${esc(task.question || task.title || '')}</div>
+            <div style="font-size:0.8rem;color:var(--text2)">Turi: ${task.type}</div>
+            <button class="action-btn btn-delete" style="margin-top:8px" onclick="deleteCustomTaskUI('${methodId}', ${i})">🗑 O'chirish</button>
+          </div>
+        `).join('') : '<div class="empty-state" style="padding:20px">Hali qo\'shimcha topshiriq yo\'q</div>'}
+      </div>
+    </div>
+  `);
+
+  document.getElementById('new-task-type').addEventListener('change', function() {
+    document.getElementById('new-task-options-wrap').style.display = this.value === 'radio' ? 'block' : 'none';
   });
-  setTheme(localStorage.getItem('theme') || 'dark');
+  document.getElementById('new-task-options-wrap').style.display = 'none';
 }
+
+async function addCustomTask(methodId) {
+  const type = document.getElementById('new-task-type').value;
+  const q = document.getElementById('new-task-q').value.trim();
+  if (!q) { toast('Savol matnini kiriting!', 'error'); return; }
+
+  let taskData = { type, question: q };
+  if (type === 'radio') {
+    const opts = document.getElementById('new-task-options').value.trim();
+    const correct = document.getElementById('new-task-correct').value.trim();
+    if (!opts || !correct) { toast('Variantlar va to\'g\'ri javobni kiriting!', 'error'); return; }
+    taskData.options = opts.split(',').map(s => s.trim()).filter(Boolean);
+    taskData.correct = correct;
+  } else {
+    taskData.placeholder = 'Javobingizni yozing...';
+  }
+
+  try {
+    await API.createCustomTask(methodId, taskData);
+    if (!appState.customTasks[methodId]) appState.customTasks[methodId] = [];
+    appState.customTasks[methodId].push(taskData);
+    toast('Topshiriq qo\'shildi! ✅');
+    openTeacherMethodDetail(methodId);
+  } catch (e) { toast('Xato: ' + e.message, 'error'); }
+}
+
+async function deleteCustomTaskUI(methodId, index) {
+  if (!confirm('O\'chirishni tasdiqlaysizmi?')) return;
+  const tasks = appState.customTasks[methodId] || [];
+  const task = tasks[index];
+  if (task?._id) {
+    try { await API.deleteCustomTask(task._id); } catch (e) {}
+  }
+  tasks.splice(index, 1);
+  appState.customTasks[methodId] = tasks;
+  toast('Topshiriq o\'chirildi');
+  openTeacherMethodDetail(methodId);
+}
+
+// ── Director Dashboard ──────────────────────────────
+async function renderDirectorDashboard() {
+  setPage('Direktor paneli', 'Umumiy ko\'rinish');
+  try {
+    const [students, teachers] = await Promise.all([
+      API.listUsers('student'),
+      API.listUsers('teacher'),
+    ]);
+    setContent(`
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-value">${students.length}</div><div class="stat-label">🎓 O'quvchilar</div></div>
+        <div class="stat-card"><div class="stat-value">${teachers.length}</div><div class="stat-label">👨‍🏫 O'qituvchilar</div></div>
+        <div class="stat-card"><div class="stat-value">${students.filter(s=>s.is_active).length}</div><div class="stat-label">✅ Faol o'quvchilar</div></div>
+        <div class="stat-card"><div class="stat-value">${students.filter(s=>!s.is_active).length}</div><div class="stat-label">🚫 Bloklangan</div></div>
+      </div>
+      <div class="section-card">
+        <div class="section-head">
+          <div><h3>👥 Oxirgi o'quvchilar</h3></div>
+          <button class="btn btn-primary btn-sm" onclick="showSection('directorStudents')">Barchasi</button>
+        </div>
+        ${renderUserTableRows(students.slice(0,5))}
+      </div>
+    `);
+  } catch (e) { toast('Xato: ' + e.message, 'error'); }
+}
+
+async function renderDirectorUsers(role) {
+  setPage(role === 'student' ? 'O\'quvchilar' : 'O\'qituvchilar', 'Foydalanuvchilarni boshqaring');
+  try {
+    const users = await API.listUsers(role);
+    setContent(`
+      <div class="section-card">
+        <table class="user-table">
+          <thead>
+            <tr>
+              <th>Ism</th><th>Login</th><th>Sinf</th><th>Holat</th><th>Sana</th><th>Amallar</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${users.map(u => `
+              <tr id="user-row-${u.id}">
+                <td><strong>${esc(u.full_name)}</strong></td>
+                <td style="color:var(--text2)">@${esc(u.login)}</td>
+                <td>${esc(u.student_class) || '—'}</td>
+                <td><span class="badge ${u.is_active ? 'badge-active' : 'badge-blocked'}">${u.is_active ? '✅ Faol' : '🚫 Bloklangan'}</span></td>
+                <td style="color:var(--text2);font-size:0.85rem">${new Date(u.created_at).toLocaleDateString('uz')}</td>
+                <td style="display:flex;gap:6px">
+                  <button class="action-btn btn-toggle" onclick="toggleUserStatus(${u.id}, '${role}')">${u.is_active ? 'Bloklash' : 'Faollashtirish'}</button>
+                  <button class="action-btn btn-delete" onclick="deleteUserUI(${u.id}, '${role}')">O'chirish</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        ${!users.length ? '<div class="empty-state">Hali foydalanuvchi yo\'q</div>' : ''}
+      </div>
+    `);
+  } catch (e) { toast('Xato: ' + e.message, 'error'); }
+}
+
+function renderUserTableRows(users) {
+  return `<table class="user-table">
+    <thead><tr><th>Ism</th><th>Login</th><th>Sinf</th><th>Holat</th></tr></thead>
+    <tbody>
+      ${users.map(u => `
+        <tr>
+          <td><strong>${esc(u.full_name)}</strong></td>
+          <td style="color:var(--text2)">@${esc(u.login)}</td>
+          <td>${esc(u.student_class) || '—'}</td>
+          <td><span class="badge ${u.is_active ? 'badge-active' : 'badge-blocked'}">${u.is_active ? '✅ Faol' : '🚫 Bloklangan'}</span></td>
+        </tr>
+      `).join('')}
+    </tbody>
+  </table>`;
+}
+
+async function toggleUserStatus(userId, role) {
+  try {
+    await API.toggleUser(userId);
+    toast('Holat o\'zgartirildi');
+    renderDirectorUsers(role);
+  } catch (e) { toast('Xato: ' + e.message, 'error'); }
+}
+
+async function deleteUserUI(userId, role) {
+  if (!confirm('Foydalanuvchini o\'chirishni tasdiqlaysizmi? Bu amalni qaytarib bo\'lmaydi!')) return;
+  try {
+    await API.deleteUser(userId);
+    toast('Foydalanuvchi o\'chirildi');
+    renderDirectorUsers(role);
+  } catch (e) { toast('Xato: ' + e.message, 'error'); }
+}
+
+// ── Boot ────────────────────────────────────────────
+(function boot() {
+  // Theme
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light');
+    const btn = document.getElementById('theme-btn');
+    if (btn) btn.textContent = '🌙';
+  }
+
+  // Check existing session
+  const user = getUser();
+  const token = getToken();
+  if (user && token) {
+    appState.user = user;
+    initApp();
+  }
+})();

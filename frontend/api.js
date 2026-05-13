@@ -1,4 +1,4 @@
-const API_BASE = 'https://lively-grace-production-1631.up.railway.app/api';
+const API_BASE = 'https://edugame-production-7551.up.railway.app/api';
 
 function getToken() { return localStorage.getItem('edugame_access'); }
 function setTokens(access, refresh) {

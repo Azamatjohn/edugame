@@ -29,25 +29,21 @@ def health_check(request):
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register(request):
-    import traceback
-    try:
-        serializer = RegisterSerializer(data=request.data)
-        if not serializer.is_valid():
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer = RegisterSerializer(data=request.data)
+    if not serializer.is_valid():
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        d = serializer.validated_data
-        user = User(
-            full_name=d['full_name'],
-            login=d['login'],
-            role=d['role'],
-            student_class=d.get('student_class', ''),
-        )
-        user.set_password(d['password'])
-        user.save()
-        return Response(get_token(user), status=status.HTTP_201_CREATED)
-    except Exception as e:
-        logger.error(f"REGISTER ERROR: {e}\n{traceback.format_exc()}")
-        raise
+    d = serializer.validated_data
+    user = User(
+        full_name=d['full_name'],
+        login=d['login'],
+        role=d['role'],
+        student_class=d.get('student_class', ''),
+    )
+    user.set_password(d['password'])
+    user.save()
+    return Response(get_token(user), status=status.HTTP_201_CREATED)
+
 
 @api_view(['POST'])
 @permission_classes([AllowAny])

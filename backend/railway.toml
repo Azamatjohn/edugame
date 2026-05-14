@@ -2,5 +2,5 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "python manage.py migrate --fake api zero && python manage.py migrate && gunicorn edugame_backend.wsgi --bind 0.0.0.0:$PORT"
+startCommand = "python manage.py migrate --noinput && gunicorn edugame_backend.wsgi --bind 0.0.0.0:$PORT"
 healthcheckPath = "/api/health/"

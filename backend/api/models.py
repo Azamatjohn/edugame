@@ -5,11 +5,11 @@ from django.contrib.auth.hashers import make_password, check_password as django_
 class User(models.Model):
     ROLE_STUDENT = 'student'
     ROLE_TEACHER = 'teacher'
-    ROLE_DIRECTOR = 'director'
+    ROLE_DIRECTOR = 'admin'
     ROLE_CHOICES = [
         (ROLE_STUDENT, 'Student'),
         (ROLE_TEACHER, 'Teacher'),
-        (ROLE_DIRECTOR, 'Director'),
+        (ROLE_DIRECTOR, 'Admin'),
     ]
 
     full_name = models.CharField(max_length=200)

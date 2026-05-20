@@ -6,7 +6,7 @@ class RegisterSerializer(serializers.Serializer):
     full_name = serializers.CharField(max_length=200)
     login = serializers.CharField(max_length=100)
     password = serializers.CharField(min_length=4)
-    role = serializers.ChoiceField(choices=['student', 'teacher', 'director'])
+    role = serializers.ChoiceField(choices=['student', 'teacher', 'admin'])
     student_class = serializers.CharField(max_length=100, required=False, allow_blank=True, default='')
 
     def validate_login(self, value):

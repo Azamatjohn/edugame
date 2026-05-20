@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from .auth_backends import get_token
 from .models import CustomTask, Submission, User
-from .permissions import IsDirector, IsStudent, IsTeacher, IsTeacherOrDirector
+from .permissions import IsAdmin, IsStudent, IsTeacher, IsTeacherOrAdmin
 from .serializers import (
     CustomTaskSerializer, GradeSerializer, LoginSerializer,
     RegisterSerializer, SubmissionCreateSerializer, SubmissionSerializer,
@@ -106,7 +106,7 @@ def submit_work(request):
 
 # ── Teacher endpoints ─────────────────────────────────────────────────────────
 @api_view(['GET'])
-@permission_classes([IsTeacherOrDirector])
+@permission_classes([IsTeacherOrAdmin])
 def all_submissions(request):
     subs = Submission.objects.select_related('student').all()
     status_filter = request.GET.get('status')
@@ -138,7 +138,7 @@ def grade_submission(request, submission_id):
 
 
 @api_view(['GET'])
-@permission_classes([IsTeacherOrDirector])
+@permission_classes([IsTeacherOrAdmin])
 def dashboard_stats(request):
     total_students = User.objects.filter(role='student').count()
     total_submissions = Submission.objects.count()
@@ -214,9 +214,9 @@ def leaderboard(request):
     return Response(board[:20])
 
 
-# ── Director endpoints ────────────────────────────────────────────────────────
+# ── Admin endpoints ────────────────────────────────────────────────────────
 @api_view(['GET'])
-@permission_classes([IsDirector])
+@permission_classes([IsAdmin])
 def list_users(request):
     role = request.GET.get('role')
     users = User.objects.all()
@@ -226,7 +226,7 @@ def list_users(request):
 
 
 @api_view(['PATCH'])
-@permission_classes([IsDirector])
+@permission_classes([IsAdmin])
 def toggle_user(request, user_id):
     try:
         user = User.objects.get(pk=user_id)
@@ -238,7 +238,7 @@ def toggle_user(request, user_id):
 
 
 @api_view(['DELETE'])
-@permission_classes([IsDirector])
+@permission_classes([IsAdmin])
 def delete_user(request, user_id):
     try:
         user = User.objects.get(pk=user_id)

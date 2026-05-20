@@ -111,10 +111,10 @@ async function initApp() {
   document.getElementById('auth-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
 
-  const avatars = { student: '🎓', teacher: '👨‍🏫', director: '🏫' };
+  const avatars = { student: '🎓', teacher: '👨‍🏫', admin: '🏫' };
   document.getElementById('sidebar-avatar').textContent = avatars[user.role] || '👤';
   document.getElementById('sidebar-name').textContent = user.full_name;
-  document.getElementById('sidebar-role').textContent = user.role === 'student' ? 'O\'quvchi' : user.role === 'teacher' ? 'O\'qituvchi' : 'Direktor';
+  document.getElementById('sidebar-role').textContent = user.role === 'student' ? 'O\'quvchi' : user.role === 'teacher' ? 'O\'qituvchi' : 'Admin';
 
   buildNav(user.role);
 
@@ -125,7 +125,7 @@ async function initApp() {
     await loadTeacherData();
     showSection('teacherDashboard');
   } else {
-    showSection('directorDashboard');
+    showSection('adminDashboard');
   }
 }
 
@@ -142,10 +142,10 @@ function buildNav(role) {
       { id: 'teacherSubmissions', icon: '📋', label: 'Topshiriqlar' },
       { id: 'teacherMethods', icon: '🔧', label: 'Metodlar' },
     ],
-    director: [
-      { id: 'directorDashboard', icon: '📊', label: 'Dashboard' },
-      { id: 'directorStudents', icon: '🎓', label: 'O\'quvchilar' },
-      { id: 'directorTeachers', icon: '👨‍🏫', label: 'O\'qituvchilar' },
+    admin: [
+      { id: 'adminDashboard', icon: '📊', label: 'Dashboard' },
+      { id: 'adminStudents', icon: '🎓', label: 'O\'quvchilar' },
+      { id: 'adminTeachers', icon: '👨‍🏫', label: 'O\'qituvchilar' },
     ],
   };
 
@@ -175,9 +175,9 @@ async function renderSection(section) {
     teacherDashboard: renderTeacherDashboard,
     teacherSubmissions: renderTeacherSubmissions,
     teacherMethods: renderTeacherMethodsPanel,
-    directorDashboard: renderDirectorDashboard,
-    directorStudents: () => renderDirectorUsers('student'),
-    directorTeachers: () => renderDirectorUsers('teacher'),
+    adminDashboard: renderAdminDashboard,
+    adminStudents: () => renderAdminUsers('student'),
+    adminTeachers: () => renderAdminUsers('teacher'),
   };
   if (renders[section]) await renders[section]();
 }
@@ -628,9 +628,9 @@ async function deleteCustomTaskUI(methodId, index) {
   openTeacherMethodDetail(methodId);
 }
 
-// ── Director Dashboard ──────────────────────────────
-async function renderDirectorDashboard() {
-  setPage('Direktor paneli', 'Umumiy ko\'rinish');
+// ── Admin Dashboard ──────────────────────────────
+async function renderAdminDashboard() {
+  setPage('Admin paneli', 'Umumiy ko\'rinish');
   try {
     const [students, teachers] = await Promise.all([
       API.listUsers('student'),
@@ -646,7 +646,7 @@ async function renderDirectorDashboard() {
       <div class="section-card">
         <div class="section-head">
           <div><h3>👥 Oxirgi o'quvchilar</h3></div>
-          <button class="btn btn-primary btn-sm" onclick="showSection('directorStudents')">Barchasi</button>
+          <button class="btn btn-primary btn-sm" onclick="showSection('adminStudents')">Barchasi</button>
         </div>
         ${renderUserTableRows(students.slice(0,5))}
       </div>
@@ -654,7 +654,7 @@ async function renderDirectorDashboard() {
   } catch (e) { toast('Xato: ' + e.message, 'error'); }
 }
 
-async function renderDirectorUsers(role) {
+async function renderAdminUsers(role) {
   setPage(role === 'student' ? 'O\'quvchilar' : 'O\'qituvchilar', 'Foydalanuvchilarni boshqaring');
   try {
     const users = await API.listUsers(role);
@@ -708,7 +708,7 @@ async function toggleUserStatus(userId, role) {
   try {
     await API.toggleUser(userId);
     toast('Holat o\'zgartirildi');
-    renderDirectorUsers(role);
+    renderAdminUsers(role);
   } catch (e) { toast('Xato: ' + e.message, 'error'); }
 }
 
@@ -717,7 +717,7 @@ async function deleteUserUI(userId, role) {
   try {
     await API.deleteUser(userId);
     toast('Foydalanuvchi o\'chirildi');
-    renderDirectorUsers(role);
+    renderAdminUsers(role);
   } catch (e) { toast('Xato: ' + e.message, 'error'); }
 }
 

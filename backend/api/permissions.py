@@ -7,16 +7,16 @@ class IsTeacher(BasePermission):
                     getattr(request.user, 'role', None) == 'teacher')
 
 
-class IsDirector(BasePermission):
+class IsAdmin(BasePermission):
     def has_permission(self, request, view):
         return bool(request.user and request.user.is_authenticated and
-                    getattr(request.user, 'role', None) == 'director')
+                    getattr(request.user, 'role', None) == 'admin')
 
 
-class IsTeacherOrDirector(BasePermission):
+class IsTeacherOrAdmin(BasePermission):
     def has_permission(self, request, view):
         return bool(request.user and request.user.is_authenticated and
-                    getattr(request.user, 'role', None) in ('teacher', 'director'))
+                    getattr(request.user, 'role', None) in ('teacher', 'admin'))
 
 
 class IsStudent(BasePermission):

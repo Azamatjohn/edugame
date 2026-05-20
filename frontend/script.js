@@ -2,150 +2,6 @@
 //  EduGame Pro — Main Script
 // ═══════════════════════════════════════════════════
 
-// ── 4 Methods Data ─────────────────────────────────
-const METHODS = [
-  {
-    id: 'brainstorming',
-    title: 'Aqliy Hujum',
-    emoji: '🧠',
-    color: '#6c63ff',
-    desc: 'Erkin fikrlash va g\'oyalar generatsiyasi. Har bir g\'oya muhim!',
-    level: 'Barcha darajalar',
-    duration: '20 daqiqa',
-    tasks: [
-      {
-        type: 'text',
-        question: 'Kompyuter texnologiyalarining kundalik hayotdagi 5 ta muhim qo\'llanilishini yozing.',
-        placeholder: 'G\'oyalaringizni shu yerga yozing...',
-      },
-      {
-        type: 'radio',
-        question: 'Aqliy hujum metodining asosiy maqsadi nima?',
-        options: ['Faqat to\'g\'ri javoblarni topish', 'Imkon qadar ko\'p g\'oya ishlab chiqish', 'Munozara qilish', 'Kitob o\'qish'],
-        correct: 'Imkon qadar ko\'p g\'oya ishlab chiqish',
-      },
-      {
-        type: 'text',
-        question: 'Kelajakda ixtiro qilmoqchi bo\'lgan texnologiyangizni tasvirlab bering.',
-        placeholder: 'Ijodiy fikringizni yozing...',
-      },
-      {
-        type: 'radio',
-        question: 'Aqliy hujumda qaysi qoida to\'g\'ri?',
-        options: ['G\'oyalarni darhol tanqid qilish', 'Faqat o\'zingizning g\'oyangizni aytish', 'Barcha g\'oyalarni qabul qilish', 'Jim o\'tirish'],
-        correct: 'Barcha g\'oyalarni qabul qilish',
-      },
-    ],
-  },
-  {
-    id: 'case-study',
-    title: 'Muammoli Vaziyat',
-    emoji: '🔍',
-    color: '#06b6d4',
-    desc: 'Real hayotdagi muammolarni tahlil qiling va yechimlar toping.',
-    level: 'O\'rta daraja',
-    duration: '25 daqiqa',
-    tasks: [
-      {
-        type: 'case-box',
-        title: 'Muammo: Maktab internet tarmoqi',
-        description: 'Maktabda 500 o\'quvchi bor, lekin internet tezligi juda sekin. O\'quvchilar onlayn dars paytida muammolarga duch kelmoqda. Siz IT mutaxassis sifatida bu muammoni hal qilishingiz kerak.',
-      },
-      {
-        type: 'text',
-        question: 'Bu muammoning asosiy sabablarini aniqlang (kamida 3 ta sabab yozing).',
-        placeholder: 'Sabablarni tahlil qiling...',
-      },
-      {
-        type: 'radio',
-        question: 'Maktab tarmog\'ini yaxshilash uchun birinchi qadam nima bo\'lishi kerak?',
-        options: ['Darhol yangi kompyuter sotib olish', 'Mavjud tarmoqni diagnostika qilish', 'Internetni o\'chirib qo\'yish', 'O\'quvchilarni uyga yuborish'],
-        correct: 'Mavjud tarmoqni diagnostika qilish',
-      },
-      {
-        type: 'text',
-        question: 'Muammoni hal qilish uchun o\'z yechimingizni batafsil yozing.',
-        placeholder: 'Yechimingizni batafsil tavsiflang...',
-      },
-      {
-        type: 'radio',
-        question: 'Tarmoq bandligini kamaytirish uchun qaysi usul eng samarali?',
-        options: ['Barcha saytlarni bloklash', 'Trafikni boshqarish (QoS) tizimini o\'rnatish', 'Faqat o\'qituvchilarga internet berish', 'Internet tezligini kamaytirish'],
-        correct: 'Trafikni boshqarish (QoS) tizimini o\'rnatish',
-      },
-    ],
-  },
-  {
-    id: 'flipped',
-    title: 'Teskari Dars',
-    emoji: '📺',
-    color: '#ec4899',
-    desc: 'Avval video ko\'ring, keyin mashqlarni bajaring — yangi usulda o\'rganing!',
-    level: 'Barcha darajalar',
-    duration: '30 daqiqa',
-    tasks: [
-      {
-        type: 'video',
-        question: 'Quyidagi video darsni diqqat bilan tomosha qiling.',
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      },
-      {
-        type: 'radio',
-        question: 'Kompyuterning markaziy protsessori (CPU) nima vazifani bajaradi?',
-        options: ['Ma\'lumotlarni saqlash', 'Barcha hisob-kitoblarni amalga oshirish', 'Ekranga tasvirni chiqarish', 'Internetga ulanish'],
-        correct: 'Barcha hisob-kitoblarni amalga oshirish',
-      },
-      {
-        type: 'text',
-        question: 'Video darsdan o\'rgangan eng muhim 3 ta ma\'lumotni yozing.',
-        placeholder: 'O\'rgangan narsalaringizni yozing...',
-      },
-      {
-        type: 'radio',
-        question: 'RAM (operativ xotira) qanday xususiyatga ega?',
-        options: ['Ma\'lumotlarni doimiy saqlaydi', 'Elektr o\'chganda ma\'lumotlar yo\'qoladi', 'Internetdan tezroq ishlaydi', 'Faqat video saqlaydi'],
-        correct: 'Elektr o\'chganda ma\'lumotlar yo\'qoladi',
-      },
-    ],
-  },
-  {
-    id: 'gamification',
-    title: 'Bilimlar Labirinti',
-    emoji: '🎮',
-    color: '#f97316',
-    desc: 'Bosqichma-bosqich savollarga javob bering, yulduzlar to\'plang!',
-    level: 'Qiziqarli',
-    duration: '20 daqiqa',
-    isGame: true,
-    stages: [
-      {
-        id: 'stage1', name: '1-eshik', icon: '🚪',
-        question: 'Kompyuterning asosiy xotira qurilmasi qaysi?',
-        options: ['RAM', 'Printer', 'Monitor', 'Sichqoncha'],
-        correct: 'RAM', stars: 1,
-      },
-      {
-        id: 'stage2', name: '2-kalit', icon: '🔑',
-        question: 'Qaysi qurilma ma\'lumotlarni doimiy saqlaydi?',
-        options: ['RAM', 'HDD/SSD', 'CPU', 'GPU'],
-        correct: 'HDD/SSD', stars: 2,
-      },
-      {
-        id: 'stage3', name: 'Bonus', icon: '⭐',
-        question: 'Operatsion tizim nima uchun kerak?',
-        options: ['Faqat o\'yin o\'ynash', 'Dasturiy ta\'minot va uskunani boshqarish', 'Faqat internet uchun', 'Videolarni tomosha qilish'],
-        correct: 'Dasturiy ta\'minot va uskunani boshqarish', stars: 3,
-      },
-      {
-        id: 'stage4', name: 'Final', icon: '🏆',
-        question: 'Qaysi til veb-sahifalar tuzilmasini belgilaydi?',
-        options: ['Python', 'HTML', 'Java', 'C++'],
-        correct: 'HTML', stars: 4,
-      },
-    ],
-  },
-];
-
 // ── App State ───────────────────────────────────────
 let appState = {
   user: null,
@@ -354,7 +210,8 @@ async function loadTeacherData() {
 function getAllTasks(methodId) {
   const method = METHODS.find(m => m.id === methodId);
   if (!method) return [];
-  return [...(method.tasks || []), ...(appState.customTasks[methodId] || [])];
+  const baseTasks = method.tasks || method.stages || [];
+  return [...baseTasks, ...(appState.customTasks[methodId] || [])];
 }
 
 function getMethodTitle(id) { return METHODS.find(m => m.id === id)?.title || id; }
@@ -395,114 +252,9 @@ function renderMethods() {
   setContent(`<div class="methods-grid">${METHODS.map(m => renderMethodCard(m)).join('')}</div>`);
 }
 
-function renderMethodCard(m) {
-  const sub = appState.submissions.find(s => s.method_id === m.id);
-  const done = !!sub;
-  const stars = sub?.stars || 0;
-  return `
-    <div class="method-card" style="--method-color:${m.color}" onclick="openMethod('${m.id}')">
-      <div class="method-emoji">${m.emoji}</div>
-      <div class="method-title">${esc(m.title)}</div>
-      <div class="method-desc">${esc(m.desc)}</div>
-      <div class="method-meta">
-        <span class="method-tag">⏱ ${esc(m.duration)}</span>
-        <span class="method-tag">📊 ${esc(m.level)}</span>
-        ${done ? `<span class="method-tag" style="color:${m.color}">✅ Bajarildi ${stars > 0 ? '⭐'.repeat(Math.min(stars,5)) : ''}</span>` : ''}
-      </div>
-      <button class="method-btn" style="background:${m.color}">
-        ${done ? '🔄 Qayta bajarish' : '▶ Boshlash'}
-      </button>
-    </div>
-  `;
-}
 
-// ── Open Method ─────────────────────────────────────
-function openMethod(methodId) {
-  const method = METHODS.find(m => m.id === methodId);
-  if (!method) return;
-  if (method.isGame) {
-    openGameMethod(method);
-  } else {
-    openRegularMethod(method);
-  }
-}
 
-// ── Regular Method ──────────────────────────────────
-function openRegularMethod(method) {
-  setPage(method.title, method.desc);
-  const existing = appState.submissions.find(s => s.method_id === method.id);
-  const tasks = getAllTasks(method.id);
 
-  const tasksHTML = tasks.map((task, i) => renderTaskInput(task, i, method.id, existing)).join('');
-
-  setContent(`
-    <button class="btn btn-outline btn-sm" style="margin-bottom:16px" onclick="showSection('methods')">← Orqaga</button>
-    <div style="display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start">
-      <div>
-        <div class="section-card" style="margin-bottom:16px">
-          <h3 style="margin-bottom:8px">${method.emoji} ${esc(method.title)}</h3>
-          <p style="color:var(--text2);font-size:0.9rem">${esc(method.desc)}</p>
-        </div>
-        ${tasksHTML}
-        <button class="btn btn-primary" style="width:100%;margin-top:16px" onclick="submitRegularMethod('${method.id}')">
-          📤 Topshiriqni yuborish
-        </button>
-      </div>
-      <div class="section-card" style="position:sticky;top:80px">
-        <h4 style="margin-bottom:12px">📋 Metod haqida</h4>
-        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:8px">⏱ ${esc(method.duration)}</p>
-        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:8px">📊 ${esc(method.level)}</p>
-        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:16px">📝 ${tasks.length} ta topshiriq</p>
-        ${existing ? `<div style="padding:10px;background:rgba(34,197,94,0.1);border-radius:10px;font-size:0.85rem;color:var(--green)">✅ Avval topshirilgan</div>` : ''}
-      </div>
-    </div>
-  `);
-}
-
-function renderTaskInput(task, index, methodId, existing) {
-  const key = `task${index + 1}`;
-  const ans = existing?.answers?.[key] || '';
-
-  if (task.type === 'video') return `
-    <div class="section-card" style="margin-bottom:14px">
-      <p class="answer-label">${index + 1}-topshiriq</p>
-      <p style="font-weight:700;margin-bottom:12px">${esc(task.question)}</p>
-      <div style="border-radius:12px;overflow:hidden;aspect-ratio:16/9">
-        <iframe width="100%" height="100%" src="${task.videoUrl}" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>`;
-
-  if (task.type === 'case-box') return `
-    <div class="section-card" style="margin-bottom:14px;border-left:4px solid var(--cyan)">
-      <p class="answer-label">📌 Muammoli vaziyat</p>
-      <p style="font-weight:800;font-size:1rem;margin-bottom:8px">${esc(task.title)}</p>
-      <p style="color:var(--text2);line-height:1.6;font-size:0.9rem">${esc(task.description)}</p>
-    </div>`;
-
-  if (task.type === 'radio') return `
-    <div class="section-card" style="margin-bottom:14px">
-      <p class="answer-label">${index + 1}-topshiriq • Test</p>
-      <p style="font-weight:700;margin-bottom:14px">${esc(task.question)}</p>
-      <div class="game-options" style="grid-template-columns:1fr 1fr">
-        ${task.options.map(opt => `
-          <label class="game-option" style="cursor:pointer;display:flex;align-items:center;gap:10px">
-            <input type="radio" name="${methodId}-${key}" value="${esc(opt)}" ${ans === opt ? 'checked' : ''} style="accent-color:var(--primary)"/>
-            ${esc(opt)}
-          </label>
-        `).join('')}
-      </div>
-    </div>`;
-
-  return `
-    <div class="section-card" style="margin-bottom:14px">
-      <p class="answer-label">${index + 1}-topshiriq</p>
-      <p style="font-weight:700;margin-bottom:12px">${esc(task.question)}</p>
-      <textarea id="${methodId}-${key}" placeholder="${esc(task.placeholder || 'Javobingizni yozing...')}"
-        style="width:100%;min-height:100px;padding:12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:10px;color:var(--text);font-family:Nunito,sans-serif;font-size:0.9rem;resize:vertical;outline:none"
-        onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"
-      >${esc(typeof ans === 'string' ? ans : '')}</textarea>
-    </div>`;
-}
 
 async function submitRegularMethod(methodId) {
   const method = METHODS.find(m => m.id === methodId);
@@ -541,155 +293,8 @@ async function submitRegularMethod(methodId) {
   }
 }
 
-// ── Gamification Method ─────────────────────────────
-function openGameMethod(method) {
-  appState.gameState = { stageIndex: 0, stars: 0, streak: 0, answers: {}, answered: false };
-  const existing = appState.submissions.find(s => s.method_id === method.id);
-  if (existing) {
-    appState.gameState.stars = existing.stars || 0;
-  }
-  renderGame(method);
-}
 
-function renderGame(method) {
-  setPage(method.title, 'Bosqichma-bosqich savollarga javob bering');
-  const gs = appState.gameState;
-  const stages = method.stages;
-  const current = stages[gs.stageIndex];
-  const pct = Math.round((gs.stageIndex / stages.length) * 100);
 
-  const stagesHTML = stages.map((stage, i) => {
-    const isDone = i < gs.stageIndex;
-    const isCurrent = i === gs.stageIndex;
-    const isLocked = i > gs.stageIndex;
-    const cls = isDone ? 'completed' : isCurrent ? 'active' : 'locked';
-    return `
-      ${i > 0 ? `<div class="stage-connector ${isDone ? 'done' : ''}"></div>` : ''}
-      <div class="stage-item">
-        <div class="stage-icon ${cls}">
-          ${stage.icon}
-          ${isDone ? '<div class="stage-badge">✓</div>' : ''}
-          ${isLocked ? '<div style="position:absolute;bottom:-4px;right:-4px;font-size:0.8rem">🔒</div>' : ''}
-        </div>
-        <div class="stage-name">${esc(stage.name)}</div>
-        ${isCurrent ? '<div class="stage-label" style="color:var(--primary-light)">Joriy</div>' : ''}
-        ${isDone ? '<div class="stage-label" style="color:var(--green)">✅</div>' : ''}
-      </div>
-    `;
-  }).join('');
-
-  const totalMaxStars = stages.reduce((s, st) => s + st.stars, 0);
-  const medals = ['🥉', '🥈', '🥇'];
-  const thresholds = [Math.floor(totalMaxStars * 0.3), Math.floor(totalMaxStars * 0.6), totalMaxStars];
-
-  setContent(`
-    <button class="btn btn-outline btn-sm" style="margin-bottom:16px" onclick="showSection('methods')">← Orqaga</button>
-
-    <div class="game-stages">${stagesHTML}</div>
-
-    <div class="game-layout">
-      <div class="game-question-card" id="game-q-area">
-        <div class="game-q-header">
-          <span class="game-q-badge">${current.icon} ${esc(current.name)}</span>
-          <span style="color:var(--text2);font-size:0.85rem">Savol ${gs.stageIndex + 1}/${stages.length}</span>
-        </div>
-        <p class="game-q-text">❓ ${esc(current.question)}</p>
-        <div class="game-options" id="game-options">
-          ${current.options.map(opt => `
-            <button class="game-option" onclick="selectGameOption(this, '${esc(opt)}', '${esc(current.correct)}')">${esc(opt)}</button>
-          `).join('')}
-        </div>
-        <div id="game-result" style="display:none"></div>
-        <button class="game-next-btn" id="game-next-btn" style="display:none" onclick="nextGameStage('${method.id}')">
-          ${gs.stageIndex < stages.length - 1 ? 'Keyingi bosqich →' : '🏆 Yakunlash'}
-        </button>
-      </div>
-
-      <div class="rewards-panel">
-        <div class="rewards-card">
-          <div class="rewards-title">⭐ Yulduzlar</div>
-          <div class="stars-display">
-            <span class="stars-count">${gs.stars}</span>
-            <span class="stars-total">/ ${totalMaxStars}</span>
-          </div>
-          <div class="stars-bar">
-            <div class="stars-fill" style="width:${(gs.stars/totalMaxStars)*100}%"></div>
-          </div>
-          <div class="stars-next">Keyingi mukofot: ${thresholds.find(t => t > gs.stars) || totalMaxStars} yulduz</div>
-        </div>
-
-        <div class="rewards-card">
-          <div class="rewards-title">🏅 Medallar</div>
-          <div class="medals-grid">
-            ${medals.map((m, i) => `
-              <div class="medal ${gs.stars >= thresholds[i] ? 'earned' : 'locked'}" title="${thresholds[i]} yulduz kerak">${m}</div>
-            `).join('')}
-          </div>
-        </div>
-
-        <div class="rewards-card">
-          <div class="rewards-title">🔥 Seriya</div>
-          <div class="streak-display">
-            <div class="streak-icon">🔥</div>
-            <div>
-              <div class="streak-count">${gs.streak}</div>
-              <div class="streak-text">ketma-ket to'g'ri javob</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rewards-card">
-          <div class="rewards-title">📊 Progress</div>
-          <div class="progress-stages">
-            ${stages.map((_, i) => `
-              <div class="progress-stage-dot ${i < gs.stageIndex ? 'done' : i === gs.stageIndex ? 'current' : ''}">${i+1}</div>
-            `).join('')}
-          </div>
-          <div class="progress-line">
-            <div class="progress-fill-bar" style="width:${pct}%"></div>
-          </div>
-          <div class="progress-pct">${pct}%</div>
-        </div>
-      </div>
-    </div>
-  `);
-}
-
-function selectGameOption(btn, selected, correct) {
-  if (appState.gameState.answered) return;
-  appState.gameState.answered = true;
-
-  const isCorrect = selected === correct;
-  const options = document.querySelectorAll('.game-option');
-  options.forEach(opt => {
-    opt.disabled = true;
-    if (opt.textContent.trim() === correct) opt.classList.add('correct');
-    else if (opt === btn && !isCorrect) opt.classList.add('wrong');
-  });
-
-  const result = document.getElementById('game-result');
-  result.style.display = 'flex';
-
-  if (isCorrect) {
-    const method = METHODS.find(m => m.id === 'gamification');
-    const stage = method.stages[appState.gameState.stageIndex];
-    appState.gameState.stars += stage.stars;
-    appState.gameState.streak++;
-    result.innerHTML = `
-      <div class="game-result-banner success">
-        🎉 Barakalla! 1-eshik ochildi! &nbsp;<strong>+${stage.stars} ⭐</strong>
-        ${appState.gameState.streak > 1 ? `&nbsp; 🔥 ${appState.gameState.streak} seriya!` : ''}
-      </div>`;
-  } else {
-    appState.gameState.streak = 0;
-    result.innerHTML = `
-      <div class="game-result-banner fail">
-        😔 To'g'ri javob: <strong>${esc(correct)}</strong>
-      </div>`;
-  }
-
-  document.getElementById('game-next-btn').style.display = 'block';
-}
 
 async function nextGameStage(methodId) {
   const method = METHODS.find(m => m.id === methodId);
@@ -715,26 +320,6 @@ async function nextGameStage(methodId) {
   renderGame(method);
 }
 
-function showCelebration(stars) {
-  const totalMaxStars = METHODS.find(m => m.id === 'gamification').stages.reduce((s,st) => s + st.stars, 0);
-  const pct = Math.round((stars / totalMaxStars) * 100);
-  const el = document.createElement('div');
-  el.className = 'celebration';
-  el.innerHTML = `
-    <div class="celebration-content">
-      <div class="celebration-emoji">🏆</div>
-      <div class="celebration-title">Tabriklaymiz!</div>
-      <div class="celebration-sub" style="margin:8px 0">Siz barcha bosqichlarni yakunladingiz!</div>
-      <div style="font-size:2rem;margin:12px 0">⭐ ${stars} / ${totalMaxStars}</div>
-      <div style="font-size:1rem;color:var(--text2);margin-bottom:20px">${pct}% natija</div>
-      <button class="btn btn-primary" onclick="this.closest('.celebration').remove(); showSection('myResults')">
-        Natijalarni ko'rish 🎯
-      </button>
-    </div>
-  `;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 10000);
-}
 
 // ── My Results ──────────────────────────────────────
 function renderMyResults() {
@@ -750,6 +335,7 @@ function renderMyResults() {
     <div class="submissions-list">
       ${subs.map(sub => {
         const method = METHODS.find(m => m.id === sub.method_id);
+        const stars = sub.stars || 0;
         return `
           <div class="submission-card">
             <div class="submission-head">
@@ -758,10 +344,11 @@ function renderMyResults() {
                 <div class="meta-row">
                   <span class="meta-tag">📅 ${esc(sub.submitted_at || '')}</span>
                   <span class="status-pill ${sub.status}">${sub.status === 'graded' ? '✅ Baholangan' : '⏳ Tekshirilmoqda'}</span>
-                  ${sub.stars ? `<span class="meta-tag">⭐ ${sub.stars} yulduz</span>` : ''}
+                  ${stars ? `<span class="meta-tag">⭐ ${'⭐'.repeat(Math.min(stars,5))} (${stars})</span>` : ''}
+                  ${sub.auto_score ? `<span class="meta-tag">🎯 Ball: ${sub.auto_score}</span>` : ''}
                 </div>
               </div>
-              <button class="btn btn-outline btn-sm" onclick="openMethod('${sub.method_id}')">Qayta ko'rish</button>
+              <button class="btn btn-outline btn-sm" onclick="openMethod('${sub.method_id}')">Qayta bajarish</button>
             </div>
             ${sub.status === 'graded' ? `
               <div class="answer-block">

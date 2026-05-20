@@ -776,7 +776,10 @@ function renderGameStage(method, gs) {
         <div class="game-q-text">${esc(current.question)}</div>
         <div class="game-options-grid" id="game-opts">
           ${current.options.map(opt => `
-            <button class="game-opt-btn" onclick="selectGameOpt(this,'${esc(opt)}','${esc(current.correct)}')">
+            <button class="game-opt-btn"
+              data-opt="${esc(opt)}"
+              data-correct="${esc(current.correct)}"
+              onclick="selectGameOpt(this, this.dataset.opt, this.dataset.correct)">
               ${esc(opt)}
             </button>
           `).join('')}
